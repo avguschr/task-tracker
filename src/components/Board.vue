@@ -14,7 +14,7 @@ export default {
 </script>
 <style scoped lang="css">
 .board {
-  background: wheat;
+  background: #fff;
   min-height: 25vh;
   border-radius: 10px;
 }
