@@ -1,5 +1,5 @@
 <template lang="html">
-  <div>
+  <div class="">
     <h2>{{ title }}</h2>
     <div class="board"></div>
   </div>
@@ -15,7 +15,7 @@ export default {
 <style scoped lang="css">
 .board {
   background: #fff;
-  min-height: 25vh;
+  min-height: 90vh;
   border-radius: 10px;
 }
 </style>
