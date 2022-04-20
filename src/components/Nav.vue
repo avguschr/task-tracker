@@ -1,11 +1,11 @@
 <template lang="html">
   <div class="nav d-flex align-items-center justify-content-between">
     <div @click="openSwitchBoards" class="d-flex align-items-center item p-2">
-      <i class="fa-solid fa-clipboard"></i>
+      <i class="fa-solid fa-chalkboard"></i>
       <p>Доски</p>
     </div>
     <div>
-      <p class="text-center">Task Tracker</p>
+      <p class="text-center title">Task Tracker</p>
     </div>
     <div class="d-flex align-items-center item p-2">
       <i class="fa-solid fa-bars"></i>
@@ -25,16 +25,34 @@ export default {
 .nav {
   padding: 1vh;
   width: 100%;
-  background: grey;
+  background: #4257a6;
 }
 
 .nav i {
   margin-right: 10px;
 }
 
+.nav i,
+.nav p {
+  color: white;
+}
+
 .nav .item {
-  background-color: rgba(255, 255, 255, 0.203);
+  background-color: rgba(255, 255, 255, 0.356);
   border-radius: 10px;
   cursor: pointer;
+  transition-property: background-color;
+  transition-duration: 1s;
+  transition-timing-function: ease-in-out;
+}
+
+.nav .title {
+  font-family: "Dancing Script", cursive;
+  color: #fff;
+  font-size: 3vh;
+}
+
+.nav .item:hover {
+  background-color: rgba(39, 45, 107, 0.356);
 }
 </style>

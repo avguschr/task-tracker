@@ -20,6 +20,8 @@ export default {
   methods: {
     openSwitchBoards(): void {
       this.$refs.switchBoards.showMenu = true;
+      this.$refs.switchBoards.animation = "forward";
+      console.log(this.$refs.switchBoards.animation);
     },
   },
 };
@@ -29,10 +31,11 @@ export default {
 #app {
   height: 200px;
   height: 453px;
-  background: red;
+  background: #dddcd7;
   background-size: cover;
   height: 100vh;
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Dancing Script", cursive;
+  font-family: "Nunito", sans-serif;
 
   p,
   h1,
@@ -43,11 +46,5 @@ export default {
   h6 {
     margin: 0;
   }
-}
-
-#app h2 {
-  color: #fff;
-  text-align: center;
-  font-size: 24px;
 }
 </style>

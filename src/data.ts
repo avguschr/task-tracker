@@ -1,10 +1,21 @@
-const boardsGroup: {
+type Card = {
   title: string;
-  boards: {
-    title: string;
-    cards: { title: string; desc: string; date: string; deadline: string }[];
-  }[];
-}[] = [
+  desc: string;
+  date: string;
+  deadline: string;
+};
+
+type Board = {
+  title: string;
+  cards: Card[];
+};
+
+export type BoardGroup = {
+  title: string;
+  boards: Board[];
+};
+
+const boardsGroup: BoardGroup[] = [
   {
     title: "Доска 1",
     boards: [
