@@ -1,32 +1,72 @@
 <template lang="html">
   <div>
-    <div class="board p-3">
-      <h2 class="mb-3">{{ title }}</h2>
-      <div></div>
+    <div class="board">
+      <div class="title d-flex justify-content-between p-2">
+        {{ board.title }}
+        <div>
+          <i class="fa-solid fa-trash-can"></i>
+        </div>
+      </div>
+      <div
+        class="content d-flex flex-column justify-content-between align-items-start p-2"
+      >
+        <div class="cards">
+          <Card
+            :card="card"
+            v-for="(card, index) in board.cards"
+            :key="index"
+          />
+        </div>
+        <button class="text-start">Добавить карточку...</button>
+      </div>
     </div>
   </div>
 </template>
 <script lang="ts">
+import Card from "./Card.vue";
 export default {
   name: "board-component",
+  components: {
+    Card,
+  },
   props: {
-    title: String,
+    board: Object,
   },
 };
 </script>
 <style scoped lang="css">
 .board {
   background: #fff;
-  height: 80vh;
   border-radius: 10px;
   -webkit-box-shadow: 0px 0px 78px -60px rgba(34, 60, 80, 0.3);
   -moz-box-shadow: 0px 0px 78px -60px rgba(34, 60, 80, 0.3);
   box-shadow: 0px 0px 78px -60px rgba(34, 60, 80, 0.3);
 }
 
-.board > h2 {
-  color: rgba(39, 45, 107);
+.board .title {
+  color: #fff;
   text-align: center;
-  font-size: 24px;
+  font-size: 18px;
+  background-color: #4257a6;
+  border-radius: 10px 10px 0 0;
+}
+
+.board .content {
+  height: 90%;
+}
+
+.content button {
+  background: none;
+  color: #a1ae90;
+  border: none;
+  outline: inherit;
+  transition: color ease-in-out 1s;
+}
+
+.content button:hover {
+  color: #272d6b;
+}
+.cards {
+  width: 100%;
 }
 </style>

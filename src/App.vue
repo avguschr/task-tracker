@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Menu ref="switchBoards" />
+    <BoardsMenu ref="switchBoards" />
     <Nav :openSwitchBoards="openSwitchBoards" />
     <boards />
   </div>
@@ -8,13 +8,13 @@
 
 <script lang="ts">
 import Boards from "./views/Boards.vue";
-import Menu from "./components/Menu.vue";
+import BoardsMenu from "./components/BoardsMenu.vue";
 import Nav from "./components/Nav.vue";
 
 export default {
   components: {
     Boards,
-    Menu,
+    BoardsMenu,
     Nav,
   },
   methods: {

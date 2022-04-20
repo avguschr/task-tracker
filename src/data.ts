@@ -1,11 +1,11 @@
-type Card = {
+export type Card = {
   title: string;
   desc: string;
   date: string;
   deadline: string;
 };
 
-type Board = {
+export type Board = {
   title: string;
   cards: Card[];
 };
@@ -23,13 +23,13 @@ const boardsGroup: BoardGroup[] = [
         title: "Солбец 1",
         cards: [
           {
-            title: "dfdfdsdsd",
+            title: "1111111111111",
             desc: "addcsdsvfvs",
             date: "21.01.2002",
             deadline: "dhdshcdh",
           },
           {
-            title: "dfdfdsdsd",
+            title: "2222222222222222",
             desc: "addcsdsvfvs",
             date: "21.01.2002",
             deadline: "dhdshcdh",
@@ -37,16 +37,56 @@ const boardsGroup: BoardGroup[] = [
         ],
       },
       {
-        title: "Солбец 1",
+        title: "Солбец 2",
         cards: [
           {
-            title: "dfdfdsdsd",
+            title: "Заголовок",
             desc: "addcsdsvfvs",
             date: "21.01.2002",
             deadline: "dhdshcdh",
           },
           {
-            title: "dfdfdsdsd",
+            title: "Ого заголовок",
+            desc: "addcsdsvfvs",
+            date: "21.01.2002",
+            deadline: "dhdshcdh",
+          },
+          {
+            title: "Ого заголовок",
+            desc: "addcsdsvfvs",
+            date: "21.01.2002",
+            deadline: "dhdshcdh",
+          },
+        ],
+      },
+      // {
+      //   title: "Солбец 3",
+      //   cards: [
+      //     {
+      //       title: "1111111111111",
+      //       desc: "addcsdsvfvs",
+      //       date: "21.01.2002",
+      //       deadline: "dhdshcdh",
+      //     },
+      //     {
+      //       title: "2222222222222222",
+      //       desc: "addcsdsvfvs",
+      //       date: "21.01.2002",
+      //       deadline: "dhdshcdh",
+      //     },
+      //   ],
+      // },
+      {
+        title: "Солбец 4",
+        cards: [
+          {
+            title: "1111111111111",
+            desc: "addcsdsvfvs",
+            date: "21.01.2002",
+            deadline: "dhdshcdh",
+          },
+          {
+            title: "2222222222222222",
             desc: "addcsdsvfvs",
             date: "21.01.2002",
             deadline: "dhdshcdh",

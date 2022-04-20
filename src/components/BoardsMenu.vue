@@ -20,10 +20,10 @@ import data from "../data";
 import { BoardGroup } from "../data";
 
 export default {
-  name: "menu-component",
+  name: "boards-menu",
   data(): { showMenu: boolean; menuItems: BoardGroup[]; animation: string } {
     return {
-      showMenu: true,
+      showMenu: false,
       menuItems: data,
       animation: "forward",
     };
