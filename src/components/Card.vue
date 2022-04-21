@@ -2,10 +2,13 @@
   <div class="board-card mb-2">
     <div class="title">{{ card.title }}</div>
     <div
-      class="content d-flex justify-content-between align-items-start flex-column p-1"
+      class="content d-flex justify-content-between align-items-start flex-column p-3"
     >
       <div>
         <p>{{ card.desc }}</p>
+      </div>
+      <div>
+        <p>{{ card.deadline }}</p>
       </div>
       <div class="date p-1">
         <p>{{ card.date }}</p>
@@ -25,7 +28,6 @@ export default {
 .board-card {
   background-color: #f1f0ee;
   border-radius: 10px;
-  height: 20vh;
   -webkit-box-shadow: 0px 0px 78px -60px rgba(34, 60, 80, 0.3);
   -moz-box-shadow: 0px 0px 78px -60px rgba(34, 60, 80, 0.3);
   box-shadow: 0px 0px 78px -60px rgba(34, 60, 80, 0.3);

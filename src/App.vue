@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <BoardsMenu ref="switchBoards" />
+    <BoardsMenu :switchBoards="switchBoards" ref="switchBoards" />
     <Nav :openSwitchBoards="openSwitchBoards" />
-    <boards />
+    <boards :boardsId="boardsId" />
   </div>
 </template>
 
@@ -17,11 +17,20 @@ export default {
     BoardsMenu,
     Nav,
   },
+  data(): { boardsId: number } {
+    return {
+      boardsId: 0,
+    };
+  },
   methods: {
     openSwitchBoards(): void {
       this.$refs.switchBoards.showMenu = true;
       this.$refs.switchBoards.animation = "forward";
       console.log(this.$refs.switchBoards.animation);
+    },
+    switchBoards(id: number): void {
+      this.boardsId = id;
+      console.log(this.boardsId);
     },
   },
 };

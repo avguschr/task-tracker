@@ -8,7 +8,12 @@
     </div>
     <div class="container">
       <ul>
-        <li class="mb-2" v-for="(desk, index) in menuItems" :key="index">
+        <li
+          @click="switchBoards(index)"
+          class="mb-2"
+          v-for="(desk, index) in menuItems"
+          :key="index"
+        >
           {{ desk.title }}
         </li>
       </ul>
@@ -21,6 +26,9 @@ import { BoardGroup } from "../data";
 
 export default {
   name: "boards-menu",
+  props: {
+    switchBoards: Function,
+  },
   data(): { showMenu: boolean; menuItems: BoardGroup[]; animation: string } {
     return {
       showMenu: false,
