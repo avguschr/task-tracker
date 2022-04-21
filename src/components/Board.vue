@@ -1,5 +1,5 @@
 <template lang="html">
-  <div>
+  <div class="mb-2">
     <div class="board">
       <div class="title d-flex justify-content-between p-2">
         {{ board.title }}

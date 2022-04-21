@@ -21,7 +21,7 @@
   </div>
 </template>
 <script lang="ts">
-import data from "../data";
+// import data from "../data";
 import { BoardGroup } from "../data";
 
 export default {
@@ -29,11 +29,17 @@ export default {
   props: {
     switchBoards: Function,
   },
-  data(): { showMenu: boolean; menuItems: BoardGroup[]; animation: string } {
+  data(): {
+    showMenu: boolean;
+    menuItems: BoardGroup[];
+    animation: string;
+    active: boolean;
+  } {
     return {
       showMenu: false,
-      menuItems: data,
+      menuItems: JSON.parse(localStorage.getItem("data") as string),
       animation: "forward",
+      active: false,
     };
   },
   methods: {

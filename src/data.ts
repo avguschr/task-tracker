@@ -12,14 +12,12 @@ export type Board = {
 
 export type BoardGroup = {
   title: string;
-  id: number;
   boards: Board[];
 };
 
 const boardsGroup: BoardGroup[] = [
   {
     title: "Доска 1",
-    id: 1,
     boards: [
       {
         title: "Солбец 1",
@@ -100,7 +98,6 @@ const boardsGroup: BoardGroup[] = [
 
   {
     title: "Доска 2",
-    id: 2,
     boards: [
       {
         title: "Солбец 1",

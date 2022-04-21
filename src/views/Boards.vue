@@ -4,7 +4,7 @@
       class="d-flex flex-row row row-cols-1 row-cols-sm-1 row-cols-md-3 position-relative"
     >
       <board
-        v-for="(board, index) in boards[boardsId].boards"
+        v-for="(board, index) in data[boardsId].boards"
         :key="index"
         class="col"
         :board="board"
@@ -14,23 +14,17 @@
 </template>
 <script lang="ts">
 import Board from "../components/Board.vue";
-import data from "../data";
-import { BoardGroup } from "../data";
 export default {
   name: "boards-component",
   props: {
     boardsId: Number,
-  },
-  data(): { boards: BoardGroup[] } {
-    return {
-      boards: data,
-    };
+    data: Array,
   },
   components: {
     Board,
   },
   mounted() {
-    console.log(data[0].boards);
+    console.log(this.data[0].boards);
   },
 };
 </script>

@@ -2,7 +2,7 @@
   <div id="app">
     <BoardsMenu :switchBoards="switchBoards" ref="switchBoards" />
     <Nav :openSwitchBoards="openSwitchBoards" />
-    <boards :boardsId="boardsId" />
+    <boards :boardsId="boardsId" :data="data" />
   </div>
 </template>
 
@@ -10,6 +10,8 @@
 import Boards from "./views/Boards.vue";
 import BoardsMenu from "./components/BoardsMenu.vue";
 import Nav from "./components/Nav.vue";
+import { BoardGroup } from "./data";
+import { mainBoard } from "./mainBoard";
 
 export default {
   components: {
@@ -17,9 +19,10 @@ export default {
     BoardsMenu,
     Nav,
   },
-  data(): { boardsId: number } {
+  data(): { boardsId: number; data: BoardGroup[] } {
     return {
       boardsId: 0,
+      data: JSON.parse(localStorage.getItem("data") as string) || [],
     };
   },
   methods: {
@@ -32,6 +35,16 @@ export default {
       this.boardsId = id;
       console.log(this.boardsId);
     },
+    addLocalStorage() {
+      let data: BoardGroup[] = [];
+      data.push(mainBoard);
+      localStorage.setItem("data", JSON.stringify(data));
+    },
+  },
+  created() {
+    if (!localStorage.getItem("data")) {
+      this.addLocalStorage();
+    }
   },
 };
 </script>
