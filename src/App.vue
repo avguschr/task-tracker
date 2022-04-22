@@ -3,7 +3,6 @@
     <BoardsMenu :switchBoards="switchBoards" ref="switchBoards" />
     <Nav :openSwitchBoards="openSwitchBoards" />
     <boards :boardsId="boardsId" :data="data" />
-    <create-board ref="createBoard" />
   </div>
 </template>
 
@@ -11,7 +10,6 @@
 import Boards from "./views/Boards.vue";
 import BoardsMenu from "./components/BoardsMenu.vue";
 import Nav from "./components/Nav.vue";
-import CreateBoard from "./components/CreateBoard.vue";
 import { BoardGroup } from "./data";
 import { mainBoard } from "./mainBoard";
 
@@ -20,7 +18,6 @@ export default {
     Boards,
     BoardsMenu,
     Nav,
-    CreateBoard,
   },
   data(): { boardsId: number; data: BoardGroup[] } {
     return {

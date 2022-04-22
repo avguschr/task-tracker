@@ -58,6 +58,6 @@ export default {
 
 .board-card .bottom {
   width: 100%;
-  font-size: 2vh;
+  font-size: 1.3vh;
 }
 </style>

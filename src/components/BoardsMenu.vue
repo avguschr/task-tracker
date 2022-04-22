@@ -7,7 +7,10 @@
       <i @click="closeMenu" class="fa-solid fa-xmark"></i>
     </div>
     <div class="container">
-      <div @click="openModal" class="d-flex align-items-center mb-4">
+      <div
+        @click="openModal"
+        class="create-board d-flex align-items-center mb-4"
+      >
         <i class="fa-solid fa-plus"></i>
         <p>Создать доску</p>
       </div>
@@ -22,25 +25,32 @@
         </li>
       </ul>
     </div>
+    <create-board :showModal="showModal" />
   </div>
 </template>
 <script lang="ts">
 // import data from "../data";
 import { BoardGroup } from "../data";
+import CreateBoard from "./CreateBoard.vue";
 
 export default {
   name: "boards-menu",
+  components: {
+    CreateBoard,
+  },
   props: {
     switchBoards: Function,
   },
   data(): {
     showMenu: boolean;
+    showModal: boolean;
     menuItems: BoardGroup[];
     animation: string;
     active: boolean;
   } {
     return {
       showMenu: true,
+      showModal: false,
       menuItems: JSON.parse(localStorage.getItem("data") as string),
       animation: "forward",
       active: false,
@@ -53,6 +63,14 @@ export default {
         this.showMenu = false;
       }, 1000);
     },
+    openModal(): void {
+      // console.log(this.showModal);
+      this.showModal = true;
+      // console.log(this.showModal);
+    },
+  },
+  mounted(): void {
+    console.log(this.$refs.modal);
   },
 };
 </script>
@@ -94,6 +112,10 @@ export default {
 
 .forward {
   animation: menu-animation 1s ease forwards;
+}
+
+.create-board {
+  cursor: pointer;
 }
 
 @keyframes menu-animation {

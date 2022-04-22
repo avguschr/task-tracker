@@ -18,16 +18,20 @@ export default {
   name: "modal-component",
   props: {
     title: String,
+    showModal: Boolean,
   },
   data(): { show: boolean } {
     return {
-      show: true,
+      show: this.showModal,
     };
   },
   methods: {
     close(): void {
       this.show = false;
     },
+  },
+  updated() {
+    console.log(this.showModal);
   },
 };
 </script>

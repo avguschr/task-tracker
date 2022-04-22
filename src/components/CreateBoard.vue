@@ -1,5 +1,5 @@
 <template lang="html">
-  <Modal ref="modal" v-if="show" title="Новая доска">
+  <Modal :showModal="showModal" ref="modal" title="Новая доска">
     <form>
       <label class="mb-2" for="title">Заголовок</label>
       <input v-model="title" required id="title" type="text" />
@@ -15,10 +15,12 @@ export default {
   components: {
     Modal,
   },
-  data(): { title: string; show: boolean } {
+  props: {
+    showModal: Boolean,
+  },
+  data(): { title: string } {
     return {
       title: "",
-      show: this.$refs.modal.show,
     };
   },
 };
