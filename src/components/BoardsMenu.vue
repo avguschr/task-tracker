@@ -1,12 +1,16 @@
 <template lang="html">
   <div v-if="showMenu" :class="animation" class="menu pt-2 position-absolute">
     <div
-      class="container d-flex justify-content-between align-items-center mb-2"
+      class="title container d-flex justify-content-between align-items-center mb-1"
     >
       <h3>Доски</h3>
       <i @click="closeMenu" class="fa-solid fa-xmark"></i>
     </div>
     <div class="container">
+      <div @click="openModal" class="d-flex align-items-center mb-4">
+        <i class="fa-solid fa-plus"></i>
+        <p>Создать доску</p>
+      </div>
       <ul>
         <li
           @click="switchBoards(index)"
@@ -36,7 +40,7 @@ export default {
     active: boolean;
   } {
     return {
-      showMenu: false,
+      showMenu: true,
       menuItems: JSON.parse(localStorage.getItem("data") as string),
       animation: "forward",
       active: false,
@@ -64,7 +68,7 @@ export default {
   z-index: 99;
 }
 
-.menu i {
+.menu .title i {
   font-size: 35px;
   cursor: pointer;
 }

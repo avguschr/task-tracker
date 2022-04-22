@@ -23,9 +23,6 @@ export default {
   components: {
     Board,
   },
-  mounted() {
-    console.log(this.data[0].boards);
-  },
 };
 </script>
 
