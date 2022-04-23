@@ -13,12 +13,14 @@
   </div>
 </template>
 <script lang="ts">
+import { BoardGroup } from "@/data";
 import Board from "../components/Board.vue";
+import { PropType } from "@vue/runtime-core";
 export default {
   name: "boards-component",
   props: {
     boardsId: Number,
-    data: Array,
+    data: Array as PropType<BoardGroup[]>,
   },
   components: {
     Board,

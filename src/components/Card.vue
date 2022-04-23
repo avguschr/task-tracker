@@ -21,10 +21,12 @@
   </div>
 </template>
 <script lang="ts">
+import { Card } from "@/data";
+import { PropType } from "@vue/runtime-core";
 export default {
   name: "card-component",
   props: {
-    card: Object,
+    card: Object as PropType<Card>,
   },
 };
 </script>

@@ -1,5 +1,5 @@
 <template lang="html">
-  <div v-if="show" class="modal-window">
+  <div @click="func" v-if="show" class="modal-window">
     <div class="position-fixed top-50 start-50 translate-middle p-3">
       <div
         class="title container d-flex justify-content-between align-items-center mb-1"
@@ -18,20 +18,16 @@ export default {
   name: "modal-component",
   props: {
     title: String,
-    showModal: Boolean,
   },
   data(): { show: boolean } {
     return {
-      show: this.showModal,
+      show: true,
     };
   },
   methods: {
     close(): void {
       this.show = false;
     },
-  },
-  updated() {
-    console.log(this.showModal);
   },
 };
 </script>

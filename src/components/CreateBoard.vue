@@ -1,5 +1,5 @@
 <template lang="html">
-  <Modal :showModal="showModal" ref="modal" title="Новая доска">
+  <Modal ref="modal" title="Новая доска">
     <form>
       <label class="mb-2" for="title">Заголовок</label>
       <input v-model="title" required id="title" type="text" />
@@ -14,9 +14,6 @@ export default {
   name: "create-board",
   components: {
     Modal,
-  },
-  props: {
-    showModal: Boolean,
   },
   data(): { title: string } {
     return {

@@ -25,7 +25,7 @@
         </li>
       </ul>
     </div>
-    <create-board :showModal="showModal" />
+    <create-board ref="createBoard" :showModal="showModal" />
   </div>
 </template>
 <script lang="ts">
@@ -43,14 +43,12 @@ export default {
   },
   data(): {
     showMenu: boolean;
-    showModal: boolean;
     menuItems: BoardGroup[];
     animation: string;
     active: boolean;
   } {
     return {
       showMenu: true,
-      showModal: false,
       menuItems: JSON.parse(localStorage.getItem("data") as string),
       animation: "forward",
       active: false,
@@ -64,13 +62,8 @@ export default {
       }, 1000);
     },
     openModal(): void {
-      // console.log(this.showModal);
-      this.showModal = true;
-      // console.log(this.showModal);
+      this.$refs.createBoard.$refs.modal.show = true;
     },
-  },
-  mounted(): void {
-    console.log(this.$refs.modal);
   },
 };
 </script>

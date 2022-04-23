@@ -23,14 +23,16 @@
   </div>
 </template>
 <script lang="ts">
+import { PropType } from "@vue/runtime-core";
 import Card from "./Card.vue";
+import { Board } from "@/data";
 export default {
   name: "board-component",
   components: {
     Card,
   },
   props: {
-    board: Object,
+    board: Object as PropType<Board>,
   },
 };
 </script>

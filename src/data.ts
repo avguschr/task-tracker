@@ -15,6 +15,10 @@ export type BoardGroup = {
   boards: Board[];
 };
 
+export type VoidFunc = {
+  func: () => void;
+};
+
 const boardsGroup: BoardGroup[] = [
   {
     title: "Доска 1",
