@@ -18,14 +18,14 @@
         <li
           @click="switchBoards(index)"
           class="mb-2"
-          v-for="(desk, index) in menuItems"
+          v-for="(desk, index) in getData"
           :key="index"
         >
           {{ desk.title }}
         </li>
       </ul>
     </div>
-    <create-board ref="createBoard" :showModal="showModal" />
+    <create-board ref="createBoard" />
   </div>
 </template>
 <script lang="ts">
@@ -63,6 +63,11 @@ export default {
     },
     openModal(): void {
       this.$refs.createBoard.$refs.modal.show = true;
+    },
+  },
+  computed: {
+    getData(): string {
+      return JSON.parse(localStorage.getItem("data") as string);
     },
   },
 };
