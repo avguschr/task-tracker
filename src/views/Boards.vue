@@ -4,10 +4,11 @@
       class="d-flex flex-row row row-cols-1 row-cols-sm-1 row-cols-md-3 position-relative"
     >
       <board
-        v-for="(board, index) in data[boardsId].boards"
+        v-for="(board, index) in data.filter((board: BoardGroup) => board.active)[0].boards"
         :key="index"
         class="col"
         :board="board"
+        :id="index"
       />
     </div>
   </div>
@@ -19,7 +20,6 @@ import { PropType } from "@vue/runtime-core";
 export default {
   name: "boards-component",
   props: {
-    boardsId: Number,
     data: Array as PropType<BoardGroup[]>,
   },
   components: {

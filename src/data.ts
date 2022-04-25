@@ -2,7 +2,7 @@ export type Card = {
   title: string;
   desc: string;
   date: string;
-  deadline: string;
+  deadline: Date;
 };
 
 export type Board = {
@@ -12,133 +12,130 @@ export type Board = {
 
 export type BoardGroup = {
   title: string;
+  active: boolean;
   boards: Board[];
 };
 
-export type VoidFunc = {
-  func: () => void;
-};
+// const boardsGroup: BoardGroup[] = [
+//   {
+//     title: "Доска 1",
+//     boards: [
+//       {
+//         title: "Солбец 1",
+//         cards: [
+//           {
+//             title: "1111111111111",
+//             desc: "addcsdsvfvs",
+//             date: "21.01.2002",
+//             deadline: "dhdshcdh",
+//           },
+//           {
+//             title: "2222222222222222",
+//             desc: "addcsdsvfvs",
+//             date: "21.01.2002",
+//             deadline: "dhdshcdh",
+//           },
+//         ],
+//       },
+//       {
+//         title: "Солбец 2",
+//         cards: [
+//           {
+//             title: "Заголовок",
+//             desc: "addcsdsvfvs",
+//             date: "21.01.2002",
+//             deadline: "dhdshcdh",
+//           },
+//           {
+//             title: "Ого заголовок",
+//             desc: "addcsdsvfvs",
+//             date: "21.01.2002",
+//             deadline: "dhdshcdh",
+//           },
+//           {
+//             title: "Ого заголовок",
+//             desc: "addcsdsvfvs",
+//             date: "21.01.2002",
+//             deadline: "dhdshcdh",
+//           },
+//         ],
+//       },
+//       // {
+//       //   title: "Солбец 3",
+//       //   cards: [
+//       //     {
+//       //       title: "1111111111111",
+//       //       desc: "addcsdsvfvs",
+//       //       date: "21.01.2002",
+//       //       deadline: "dhdshcdh",
+//       //     },
+//       //     {
+//       //       title: "2222222222222222",
+//       //       desc: "addcsdsvfvs",
+//       //       date: "21.01.2002",
+//       //       deadline: "dhdshcdh",
+//       //     },
+//       //   ],
+//       // },
+//       {
+//         title: "Солбец 4",
+//         cards: [
+//           {
+//             title: "1111111111111",
+//             desc: "addcsdsvfvs",
+//             date: "21.01.2002",
+//             deadline: "dhdshcdh",
+//           },
+//           {
+//             title: "2222222222222222",
+//             desc: "addcsdsvfvs",
+//             date: "21.01.2002",
+//             deadline: "dhdshcdh",
+//           },
+//         ],
+//       },
+//     ],
+//   },
 
-const boardsGroup: BoardGroup[] = [
-  {
-    title: "Доска 1",
-    boards: [
-      {
-        title: "Солбец 1",
-        cards: [
-          {
-            title: "1111111111111",
-            desc: "addcsdsvfvs",
-            date: "21.01.2002",
-            deadline: "dhdshcdh",
-          },
-          {
-            title: "2222222222222222",
-            desc: "addcsdsvfvs",
-            date: "21.01.2002",
-            deadline: "dhdshcdh",
-          },
-        ],
-      },
-      {
-        title: "Солбец 2",
-        cards: [
-          {
-            title: "Заголовок",
-            desc: "addcsdsvfvs",
-            date: "21.01.2002",
-            deadline: "dhdshcdh",
-          },
-          {
-            title: "Ого заголовок",
-            desc: "addcsdsvfvs",
-            date: "21.01.2002",
-            deadline: "dhdshcdh",
-          },
-          {
-            title: "Ого заголовок",
-            desc: "addcsdsvfvs",
-            date: "21.01.2002",
-            deadline: "dhdshcdh",
-          },
-        ],
-      },
-      // {
-      //   title: "Солбец 3",
-      //   cards: [
-      //     {
-      //       title: "1111111111111",
-      //       desc: "addcsdsvfvs",
-      //       date: "21.01.2002",
-      //       deadline: "dhdshcdh",
-      //     },
-      //     {
-      //       title: "2222222222222222",
-      //       desc: "addcsdsvfvs",
-      //       date: "21.01.2002",
-      //       deadline: "dhdshcdh",
-      //     },
-      //   ],
-      // },
-      {
-        title: "Солбец 4",
-        cards: [
-          {
-            title: "1111111111111",
-            desc: "addcsdsvfvs",
-            date: "21.01.2002",
-            deadline: "dhdshcdh",
-          },
-          {
-            title: "2222222222222222",
-            desc: "addcsdsvfvs",
-            date: "21.01.2002",
-            deadline: "dhdshcdh",
-          },
-        ],
-      },
-    ],
-  },
+//   {
+//     title: "Доска 2",
+//     boards: [
+//       {
+//         title: "Солбец 1",
+//         cards: [
+//           {
+//             title: "dfdfdsdsd",
+//             desc: "addcsdsvfvs",
+//             date: "21.01.2002",
+//             deadline: "dhdshcdh",
+//           },
+//           {
+//             title: "dfdfdsdsd",
+//             desc: "addcsdsvfvs",
+//             date: "21.01.2002",
+//             deadline: "dhdshcdh",
+//           },
+//         ],
+//       },
+//       {
+//         title: "Солбец 1",
+//         cards: [
+//           {
+//             title: "dfdfdsdsd",
+//             desc: "addcsdsvfvs",
+//             date: "21.01.2002",
+//             deadline: "dhdshcdh",
+//           },
+//           {
+//             title: "dfdfdsdsd",
+//             desc: "addcsdsvfvs",
+//             date: "21.01.2002",
+//             deadline: "dhdshcdh",
+//           },
+//         ],
+//       },
+//     ],
+//   },
+// ];
 
-  {
-    title: "Доска 2",
-    boards: [
-      {
-        title: "Солбец 1",
-        cards: [
-          {
-            title: "dfdfdsdsd",
-            desc: "addcsdsvfvs",
-            date: "21.01.2002",
-            deadline: "dhdshcdh",
-          },
-          {
-            title: "dfdfdsdsd",
-            desc: "addcsdsvfvs",
-            date: "21.01.2002",
-            deadline: "dhdshcdh",
-          },
-        ],
-      },
-      {
-        title: "Солбец 1",
-        cards: [
-          {
-            title: "dfdfdsdsd",
-            desc: "addcsdsvfvs",
-            date: "21.01.2002",
-            deadline: "dhdshcdh",
-          },
-          {
-            title: "dfdfdsdsd",
-            desc: "addcsdsvfvs",
-            date: "21.01.2002",
-            deadline: "dhdshcdh",
-          },
-        ],
-      },
-    ],
-  },
-];
-
-export default boardsGroup;
+// export default boardsGroup;

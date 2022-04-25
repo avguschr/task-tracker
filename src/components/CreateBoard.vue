@@ -32,11 +32,16 @@ export default {
     createNewBoard(): void {
       const newBoard: BoardGroup = {
         title: this.title,
+        active: true,
         boards: [],
       };
       let ls = JSON.parse(localStorage.getItem("data") as string);
+      ls.forEach((board: BoardGroup) => {
+        board.active = false;
+      });
       ls.push(newBoard);
       localStorage.data = JSON.stringify(ls);
+      this.$refs.modal.show = false;
     },
   },
 };

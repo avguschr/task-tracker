@@ -1,5 +1,6 @@
 <template lang="html">
   <div class="mb-2">
+    <create-card ref="createCard" :id="id" />
     <div class="board">
       <div class="title d-flex justify-content-between p-2">
         {{ board.title }}
@@ -17,7 +18,9 @@
             :key="index"
           />
         </div>
-        <button class="text-start">Добавить карточку...</button>
+        <button @click="openModal" class="text-start">
+          Добавить карточку...
+        </button>
       </div>
     </div>
   </div>
@@ -26,13 +29,21 @@
 import { PropType } from "@vue/runtime-core";
 import Card from "./Card.vue";
 import { Board } from "@/data";
+import CreateCard from "./CreateCard.vue";
 export default {
   name: "board-component",
   components: {
     Card,
+    CreateCard,
   },
   props: {
     board: Object as PropType<Board>,
+    id: Number,
+  },
+  methods: {
+    openModal() {
+      this.$refs.createCard.$refs.modal.show = true;
+    },
   },
 };
 </script>

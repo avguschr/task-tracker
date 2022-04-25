@@ -14,7 +14,7 @@
           <p>{{ card.deadline }}</p>
         </div>
         <div class="date p-1">
-          <p>{{ card.date }}</p>
+          <p locale="ru">{{ card.date }}</p>
         </div>
       </div>
     </div>
@@ -22,6 +22,7 @@
 </template>
 <script lang="ts">
 import { Card } from "@/data";
+import format from "date-fns/fp/formatWithOptions";
 import { PropType } from "@vue/runtime-core";
 export default {
   name: "card-component",

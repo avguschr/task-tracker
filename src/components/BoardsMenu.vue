@@ -6,22 +6,20 @@
       <h3>Доски</h3>
       <i @click="closeMenu" class="fa-solid fa-xmark"></i>
     </div>
-    <div class="container">
-      <div
-        @click="openModal"
-        class="create-board d-flex align-items-center mb-4"
-      >
-        <i class="fa-solid fa-plus"></i>
-        <p>Создать доску</p>
+    <div>
+      <div @click="openModal" class="create-board mb-4 container">
+        <i class="fa-solid fa-plus mr-3 d-inline"></i>
+        <p class="d-inline">Создать доску</p>
       </div>
       <ul>
         <li
           @click="switchBoards(index)"
-          class="mb-2"
-          v-for="(desk, index) in getData"
+          class="mb-2 container pb-1 pt-1"
+          v-for="(board, index) in menuItems"
           :key="index"
+          :class="[board.active ? 'active' : null]"
         >
-          {{ desk.title }}
+          {{ board.title }}
         </li>
       </ul>
     </div>
@@ -65,11 +63,6 @@ export default {
       this.$refs.createBoard.$refs.modal.show = true;
     },
   },
-  computed: {
-    getData(): string {
-      return JSON.parse(localStorage.getItem("data") as string);
-    },
-  },
 };
 </script>
 <style scoped lang="css">
@@ -100,6 +93,11 @@ export default {
   color: rgba(39, 45, 107);
 }
 
+.menu i {
+  margin-right: 1vh;
+  color: #4257a6;
+}
+
 .menu i:hover {
   color: rgba(39, 45, 107);
 }
@@ -114,6 +112,18 @@ export default {
 
 .create-board {
   cursor: pointer;
+  color: #4257a6;
+}
+
+.create-board:hover i,
+.create-board:hover p {
+  color: rgba(39, 45, 107);
+}
+
+.active {
+  background: red;
+  background: #4257a6;
+  color: #fff;
 }
 
 @keyframes menu-animation {

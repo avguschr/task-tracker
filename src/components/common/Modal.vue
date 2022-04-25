@@ -21,7 +21,7 @@ export default {
   },
   data(): { show: boolean } {
     return {
-      show: true,
+      show: false,
     };
   },
   methods: {

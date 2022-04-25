@@ -2,7 +2,7 @@
   <div>
     <BoardsMenu :switchBoards="switchBoards" ref="switchBoards" />
     <Nav :openSwitchBoards="openSwitchBoards" />
-    <boards :boardsId="boardsId" :data="data" />
+    <boards :data="data" />
   </div>
 </template>
 
@@ -19,9 +19,8 @@ export default {
     BoardsMenu,
     Nav,
   },
-  data(): { boardsId: number; data: BoardGroup[] } {
+  data(): { data: BoardGroup[] } {
     return {
-      boardsId: 0,
       data: JSON.parse(localStorage.getItem("data") as string) || [],
     };
   },
@@ -31,7 +30,10 @@ export default {
       this.$refs.switchBoards.animation = "forward";
     },
     switchBoards(id: number): void {
-      this.boardsId = id;
+      this.data.filter((board: BoardGroup) => board.active === true)[0].active =
+        false;
+      this.data[id].active = true;
+      localStorage.data = JSON.stringify(this.data);
     },
     addLocalStorage() {
       let data: BoardGroup[] = [];
@@ -56,7 +58,6 @@ export default {
   height: 453px;
   background: #dddcd7;
   background-size: cover;
-  height: 100vh;
   font-family: "Dancing Script", cursive;
   font-family: "Nunito", sans-serif;
 
@@ -70,7 +71,8 @@ export default {
     margin: 0;
   }
 
-  input {
+  input,
+  textarea {
     width: 100%;
     border-radius: 10px;
     padding: 8px 16px;
