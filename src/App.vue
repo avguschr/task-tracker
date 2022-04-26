@@ -39,7 +39,7 @@ export default {
     openOptionsMenu(): void {
       this.$refs.switchBoards.showMenu = false;
       this.$refs.optionsMenu.showMenu = true;
-      this.$refs.switchBoards.animation = "forward";
+      this.$refs.optionsMenu.animation = "forward";
     },
     switchBoards(id: number): void {
       this.data.filter((board: BoardGroup) => board.active === true)[0].active =
