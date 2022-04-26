@@ -1,5 +1,5 @@
 <template lang="html">
-  <Modal ref="modal" title="Новая доска">
+  <Modal ref="modal" title="Новый столбец">
     <form>
       <label class="mb-2" for="title">Заголовок</label>
       <input
@@ -8,18 +8,18 @@
         required
         id="title"
         type="text"
-        @keypress.enter="createNewBoard"
+        @keypress.enter="createNewColumn"
       />
-      <button @click.prevent="createNewBoard" class="button">Создать</button>
+      <button @click.prevent="createNewColumn" class="button">Создать</button>
     </form>
   </Modal>
 </template>
 <script lang="ts">
-import { BoardGroup } from "@/types";
+import { Board, BoardGroup } from "@/types";
 import Modal from "./common/Modal.vue";
 
 export default {
-  name: "create-board",
+  name: "create-column",
   components: {
     Modal,
   },
@@ -29,17 +29,14 @@ export default {
     };
   },
   methods: {
-    createNewBoard(): void {
-      const newBoard: BoardGroup = {
+    createNewColumn(): void {
+      const newColumn: Board = {
         title: this.title,
-        active: true,
-        boards: [],
+        cards: [],
       };
       let ls = JSON.parse(localStorage.getItem("data") as string);
-      ls.forEach((board: BoardGroup) => {
-        board.active = false;
-      });
-      ls.push(newBoard);
+      const activeBoardId = ls.findIndex((board: BoardGroup) => board.active);
+      ls[activeBoardId].boards.push(newColumn);
       localStorage.data = JSON.stringify(ls);
       this.$refs.modal.show = false;
     },

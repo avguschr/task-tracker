@@ -10,7 +10,7 @@
 import Boards from "./views/Boards.vue";
 import BoardsMenu from "./components/BoardsMenu.vue";
 import Nav from "./components/Nav.vue";
-import { BoardGroup } from "./data";
+import { BoardGroup } from "./types";
 import { mainBoard } from "./mainBoard";
 
 export default {

@@ -28,7 +28,7 @@
 <script lang="ts">
 import { PropType } from "@vue/runtime-core";
 import Card from "./Card.vue";
-import { Board } from "@/data";
+import { Board } from "@/types";
 import CreateCard from "./CreateCard.vue";
 export default {
   name: "board-component",

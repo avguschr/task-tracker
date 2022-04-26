@@ -1,4 +1,4 @@
-import { BoardGroup } from "./data";
+import { BoardGroup } from "./types";
 
 export const mainBoard: BoardGroup = {
   title: "Основные доски",

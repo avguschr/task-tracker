@@ -33,10 +33,9 @@
   </Modal>
 </template>
 <script lang="ts">
-import { Card, BoardGroup } from "@/data";
+import { Card, BoardGroup } from "@/types";
 import Modal from "./common/Modal.vue";
 import { ru } from "date-fns/locale";
-// import format from "date-fns/fp/formatWithOptions";
 import { format } from "date-fns";
 
 export default {
@@ -64,7 +63,6 @@ export default {
           locale: ru,
         }),
       };
-      console.log(Date.parse(this.deadline));
       if (this.title && this.desc) {
         let ls = JSON.parse(localStorage.getItem("data") as string);
         const activeBoardId = ls.findIndex((board: BoardGroup) => board.active);

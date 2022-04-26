@@ -28,7 +28,7 @@
 </template>
 <script lang="ts">
 // import data from "../data";
-import { BoardGroup } from "../data";
+import { BoardGroup } from "../types";
 import CreateBoard from "./CreateBoard.vue";
 
 export default {

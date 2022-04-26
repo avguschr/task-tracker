@@ -14,7 +14,7 @@
           <p>{{ card.desc }}</p>
         </div>
       </div>
-      <div class="bottom d-flex justify-content-between">
+      <div class="d-flex justify-content-between">
         <div class="deadline p-1 d-flex align-items-center" title="Дедлайн">
           <i class="fa-solid fa-clock"></i>
           <p>{{ card.deadline }}</p>
@@ -24,7 +24,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Card } from "@/data";
+import { Card } from "@/types";
 import { PropType } from "@vue/runtime-core";
 export default {
   name: "card-component",
@@ -66,9 +66,5 @@ export default {
 .deadline i {
   margin-right: 1vh;
   font-size: 2vh;
-}
-
-.board-card .bottom {
-  width: 100%;
 }
 </style>
