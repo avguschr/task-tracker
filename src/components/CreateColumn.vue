@@ -34,11 +34,14 @@ export default {
         title: this.title,
         cards: [],
       };
-      let ls = JSON.parse(localStorage.getItem("data") as string);
-      const activeBoardId = ls.findIndex((board: BoardGroup) => board.active);
-      ls[activeBoardId].boards.push(newColumn);
-      localStorage.data = JSON.stringify(ls);
-      this.$refs.modal.show = false;
+      if (this.title) {
+        let ls = JSON.parse(localStorage.getItem("data") as string);
+        const activeBoardId = ls.findIndex((board: BoardGroup) => board.active);
+        ls[activeBoardId].boards.push(newColumn);
+        localStorage.data = JSON.stringify(ls);
+        this.$refs.modal.show = false;
+        this.title = "";
+      }
     },
   },
 };

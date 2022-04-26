@@ -1,7 +1,11 @@
 <template>
   <div>
-    <BoardsMenu :switchBoards="switchBoards" ref="switchBoards" />
-    <Nav :openSwitchBoards="openSwitchBoards" />
+    <boards-menu :switchBoards="switchBoards" ref="switchBoards" />
+    <options-menu ref="optionsMenu" />
+    <Nav
+      :openSwitchBoards="openSwitchBoards"
+      :openOptionsMenu="openOptionsMenu"
+    />
     <boards :data="data" />
   </div>
 </template>
@@ -9,6 +13,7 @@
 <script lang="ts">
 import Boards from "./views/Boards.vue";
 import BoardsMenu from "./components/BoardsMenu.vue";
+import OptionsMenu from "./components/OptionsMenu.vue";
 import Nav from "./components/Nav.vue";
 import { BoardGroup } from "./types";
 import { mainBoard } from "./mainBoard";
@@ -17,6 +22,7 @@ export default {
   components: {
     Boards,
     BoardsMenu,
+    OptionsMenu,
     Nav,
   },
   data(): { data: BoardGroup[] } {
@@ -26,7 +32,13 @@ export default {
   },
   methods: {
     openSwitchBoards(): void {
+      this.$refs.optionsMenu.showMenu = false;
       this.$refs.switchBoards.showMenu = true;
+      this.$refs.switchBoards.animation = "forward";
+    },
+    openOptionsMenu(): void {
+      this.$refs.switchBoards.showMenu = false;
+      this.$refs.optionsMenu.showMenu = true;
       this.$refs.switchBoards.animation = "forward";
     },
     switchBoards(id: number): void {

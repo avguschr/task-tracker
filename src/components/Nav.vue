@@ -7,7 +7,7 @@
     <div>
       <p class="text-center title">Task Tracker</p>
     </div>
-    <div class="d-flex align-items-center item p-2">
+    <div @click="openOptionsMenu" class="d-flex align-items-center item p-2">
       <i class="fa-solid fa-bars"></i>
       <p>Меню</p>
     </div>
@@ -18,6 +18,7 @@ export default {
   name: "nav-component",
   props: {
     openSwitchBoards: Function,
+    openOptionsMenu: Function,
   },
 };
 </script>
