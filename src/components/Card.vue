@@ -1,6 +1,11 @@
 <template lang="html">
   <div class="board-card mb-2">
-    <div class="title">{{ card.title }}</div>
+    <div class="title d-flex align-items-center justify-content-between">
+      {{ card.title }}
+      <div class="date p-1" title="Создано">
+        <p>{{ card.date }}</p>
+      </div>
+    </div>
     <div
       class="content d-flex justify-content-between align-items-start flex-column p-3"
     >
@@ -10,11 +15,9 @@
         </div>
       </div>
       <div class="bottom d-flex justify-content-between">
-        <div class="deadline p-1">
+        <div class="deadline p-1 d-flex align-items-center" title="Дедлайн">
+          <i class="fa-solid fa-clock"></i>
           <p>{{ card.deadline }}</p>
-        </div>
-        <div class="date p-1">
-          <p locale="ru">{{ card.date }}</p>
         </div>
       </div>
     </div>
@@ -22,7 +25,6 @@
 </template>
 <script lang="ts">
 import { Card } from "@/data";
-import format from "date-fns/fp/formatWithOptions";
 import { PropType } from "@vue/runtime-core";
 export default {
   name: "card-component",
@@ -46,21 +48,27 @@ export default {
   padding: 1vh;
 }
 
-.board-card .date {
+.date {
   background-color: #4257a6;
 }
 
-.board-card .deadline {
-  background-color: #ff6666;
-}
-
-.bottom div {
+.date,
+.deadline {
+  font-size: 1.6vh;
   border-radius: 10px;
   color: #fff;
 }
 
+.deadline {
+  background-color: #ff6666;
+}
+
+.deadline i {
+  margin-right: 1vh;
+  font-size: 2vh;
+}
+
 .board-card .bottom {
   width: 100%;
-  font-size: 1.3vh;
 }
 </style>

@@ -46,7 +46,7 @@ export default {
     active: boolean;
   } {
     return {
-      showMenu: true,
+      showMenu: false,
       menuItems: JSON.parse(localStorage.getItem("data") as string),
       animation: "forward",
       active: false,

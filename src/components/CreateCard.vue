@@ -35,9 +35,9 @@
 <script lang="ts">
 import { Card, BoardGroup } from "@/data";
 import Modal from "./common/Modal.vue";
-import format from "date-fns/fp/formatWithOptions";
-import ruLocale from "date-fns/locale/ru";
-import { de } from "date-fns/locale";
+import { ru } from "date-fns/locale";
+// import format from "date-fns/fp/formatWithOptions";
+import { format } from "date-fns";
 
 export default {
   name: "create-card",
@@ -59,14 +59,21 @@ export default {
       const newCard: Card = {
         title: this.title,
         desc: this.desc,
-        date: format(new Date(), "MMMM dd yyyy H:mm:ss"),
-        deadline: this.deadline,
+        date: format(new Date(), "dd MMMM yyyy H:mm", { locale: ru }),
+        deadline: format(Date.parse(this.deadline), "dd MMMM yyyy H:mm", {
+          locale: ru,
+        }),
       };
-      let ls = JSON.parse(localStorage.getItem("data") as string);
-      const activeBoardId = ls.findIndex((board: BoardGroup) => board.active);
-      ls[activeBoardId].boards[id].cards.push(newCard);
-      localStorage.data = JSON.stringify(ls);
-      this.$refs.modal.show = false;
+      console.log(Date.parse(this.deadline));
+      if (this.title && this.desc) {
+        let ls = JSON.parse(localStorage.getItem("data") as string);
+        const activeBoardId = ls.findIndex((board: BoardGroup) => board.active);
+        ls[activeBoardId].boards[id].cards.push(newCard);
+        localStorage.data = JSON.stringify(ls);
+        this.$refs.modal.show = false;
+        this.title = "";
+        this.desc = "";
+      }
     },
   },
 };

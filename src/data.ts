@@ -1,7 +1,7 @@
 export type Card = {
   title: string;
   desc: string;
-  date: string;
+  date: Date;
   deadline: Date;
 };
 
