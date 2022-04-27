@@ -6,7 +6,7 @@
       :openSwitchBoards="openSwitchBoards"
       :openOptionsMenu="openOptionsMenu"
     />
-    <boards :boards="boards" />
+    <boards />
   </div>
 </template>
 
@@ -17,6 +17,7 @@ import OptionsMenu from "./components/OptionsMenu.vue";
 import Nav from "./components/Nav.vue";
 import { Board } from "./types";
 import { mainBoard } from "./mainBoard";
+import boards from "./data";
 
 export default {
   components: {
@@ -24,11 +25,6 @@ export default {
     BoardsMenu,
     OptionsMenu,
     Nav,
-  },
-  data(): { boards: Board[] } {
-    return {
-      boards: JSON.parse(localStorage.getItem("boards") as string) || [],
-    };
   },
   methods: {
     openSwitchBoards(): void {
@@ -42,10 +38,10 @@ export default {
       this.$refs.optionsMenu.animation = "forward";
     },
     switchBoards(id: number): void {
-      this.boards.filter((board: Board) => board.active === true)[0].active =
-        false;
-      this.boards[id].active = true;
-      localStorage.boards = JSON.stringify(this.boards);
+      console.log(boards);
+      boards.filter((board: Board) => board.active === true)[0].active = false;
+      boards[id].active = true;
+      localStorage.boards = JSON.stringify(boards);
     },
     addLocalStorage() {
       let boards: Board[] = [];

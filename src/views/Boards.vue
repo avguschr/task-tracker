@@ -23,13 +23,14 @@
 <script lang="ts">
 import Column from "../components/Column.vue";
 import CreateColumn from "../components/CreateColumn.vue";
+import boards from "../data";
+import { Board } from "@/types";
 export default {
   name: "boards-component",
-  props: {
-    boards: {
-      type: Array,
-      default: () => [],
-    },
+  data(): { boards: Board[] } {
+    return {
+      boards: boards,
+    };
   },
   components: {
     Column,
