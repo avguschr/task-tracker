@@ -1,9 +1,9 @@
-import { BoardGroup } from "./types";
+import { Board } from "./types";
 
-export const mainBoard: BoardGroup = {
+export const mainBoard: Board = {
   title: "Основные доски",
   active: true,
-  boards: [
+  columns: [
     {
       title: "Планируется",
       cards: [],

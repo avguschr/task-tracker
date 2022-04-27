@@ -5,13 +5,13 @@ export type Card = {
   deadline: string;
 };
 
-export type Board = {
+export type Column = {
   title: string;
   cards: Card[];
 };
 
-export type BoardGroup = {
+export type Board = {
   title: string;
   active: boolean;
-  boards: Board[];
+  columns: Column[];
 };

@@ -29,13 +29,21 @@ import { PropType } from "@vue/runtime-core";
 export default {
   name: "card-component",
   props: {
-    card: Object as PropType<Card>,
+    card: {
+      type: Object as PropType<Card>,
+      default: () => {
+        return {};
+      },
+    },
   },
 };
 </script>
-<style scoped lang="css">
+<style scoped lang="scss">
+@import "../../public/styles/sizes";
+@import "../../public/styles/colors";
+
 .board-card {
-  background-color: #f1f0ee;
+  background-color: $gallery;
   border-radius: 10px;
   -webkit-box-shadow: 0px 0px 78px -60px rgba(34, 60, 80, 0.3);
   -moz-box-shadow: 0px 0px 78px -60px rgba(34, 60, 80, 0.3);
@@ -43,28 +51,29 @@ export default {
 }
 
 .board-card .title {
-  background: #a1ae90;
+  background: $locust;
   border-radius: 10px 10px 0 0;
   padding: 1vh;
+  font-size: $title-3;
 }
 
-.date {
-  background-color: #4257a6;
+.board-card .date {
+  background-color: $liberty;
 }
 
-.date,
-.deadline {
-  font-size: 1.6vh;
+.board-card .date,
+.board-card .deadline {
+  font-size: $small-text;
   border-radius: 10px;
   color: #fff;
 }
 
-.deadline {
-  background-color: #ff6666;
+.board-card .deadline {
+  background-color: $pastel-red;
 }
 
-.deadline i {
+.board-card .deadline i {
   margin-right: 1vh;
-  font-size: 2vh;
+  font-size: $text;
 }
 </style>

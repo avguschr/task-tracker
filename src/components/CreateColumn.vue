@@ -15,7 +15,7 @@
   </Modal>
 </template>
 <script lang="ts">
-import { Board, BoardGroup } from "@/types";
+import { Board, Column } from "@/types";
 import Modal from "./common/Modal.vue";
 
 export default {
@@ -30,15 +30,15 @@ export default {
   },
   methods: {
     createNewColumn(): void {
-      const newColumn: Board = {
+      const newColumn: Column = {
         title: this.title,
         cards: [],
       };
       if (this.title) {
-        let ls = JSON.parse(localStorage.getItem("data") as string);
-        const activeBoardId = ls.findIndex((board: BoardGroup) => board.active);
-        ls[activeBoardId].boards.push(newColumn);
-        localStorage.data = JSON.stringify(ls);
+        let boards = JSON.parse(localStorage.getItem("boards") as string);
+        const activeBoardId = boards.findIndex((board: Board) => board.active);
+        boards[activeBoardId].columns.push(newColumn);
+        localStorage.boards = JSON.stringify(boards);
         this.$refs.modal.show = false;
         this.title = "";
       }
@@ -46,4 +46,4 @@ export default {
   },
 };
 </script>
-<style lang="css"></style>
+<style lang="scss"></style>

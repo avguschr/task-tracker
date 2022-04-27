@@ -6,7 +6,7 @@
       :openSwitchBoards="openSwitchBoards"
       :openOptionsMenu="openOptionsMenu"
     />
-    <boards :data="data" />
+    <boards :boards="boards" />
   </div>
 </template>
 
@@ -15,7 +15,7 @@ import Boards from "./views/Boards.vue";
 import BoardsMenu from "./components/BoardsMenu.vue";
 import OptionsMenu from "./components/OptionsMenu.vue";
 import Nav from "./components/Nav.vue";
-import { BoardGroup } from "./types";
+import { Board } from "./types";
 import { mainBoard } from "./mainBoard";
 
 export default {
@@ -25,9 +25,9 @@ export default {
     OptionsMenu,
     Nav,
   },
-  data(): { data: BoardGroup[] } {
+  data(): { boards: Board[] } {
     return {
-      data: JSON.parse(localStorage.getItem("data") as string) || [],
+      boards: JSON.parse(localStorage.getItem("boards") as string) || [],
     };
   },
   methods: {
@@ -42,22 +42,22 @@ export default {
       this.$refs.optionsMenu.animation = "forward";
     },
     switchBoards(id: number): void {
-      this.data.filter((board: BoardGroup) => board.active === true)[0].active =
+      this.boards.filter((board: Board) => board.active === true)[0].active =
         false;
-      this.data[id].active = true;
-      localStorage.data = JSON.stringify(this.data);
+      this.boards[id].active = true;
+      localStorage.boards = JSON.stringify(this.boards);
     },
     addLocalStorage() {
-      let data: BoardGroup[] = [];
-      data.push(mainBoard);
-      localStorage.setItem("data", JSON.stringify(data));
+      let boards: Board[] = [];
+      boards.push(mainBoard);
+      localStorage.setItem("boards", JSON.stringify(boards));
     },
     openModal(): void {
       this.$refs.createBoard.show = true;
     },
   },
   created() {
-    if (!localStorage.getItem("data")) {
+    if (!localStorage.getItem("boards")) {
       this.addLocalStorage();
     }
   },

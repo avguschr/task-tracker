@@ -15,7 +15,7 @@
   </Modal>
 </template>
 <script lang="ts">
-import { BoardGroup } from "@/types";
+import { Board } from "@/types";
 import Modal from "./common/Modal.vue";
 
 export default {
@@ -30,20 +30,20 @@ export default {
   },
   methods: {
     createNewBoard(): void {
-      const newBoard: BoardGroup = {
+      const newBoard: Board = {
         title: this.title,
         active: true,
-        boards: [],
+        columns: [],
       };
-      let ls = JSON.parse(localStorage.getItem("data") as string);
-      ls.forEach((board: BoardGroup) => {
+      let boards = JSON.parse(localStorage.getItem("boards") as string);
+      boards.forEach((board: Board) => {
         board.active = false;
       });
-      ls.push(newBoard);
-      localStorage.data = JSON.stringify(ls);
+      boards.push(newBoard);
+      localStorage.boards = JSON.stringify(boards);
       this.$refs.modal.show = false;
     },
   },
 };
 </script>
-<style lang="css"></style>
+<style lang="scss"></style>

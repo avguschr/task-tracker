@@ -8,7 +8,7 @@
         required
         id="title"
         type="text"
-        @keypress.enter="createNewBoard"
+        min="1"
       />
       <label class="mb-2" for="desc">Описание</label>
       <textarea
@@ -17,7 +17,7 @@
         required
         id="desc"
         type="text"
-        @keypress.enter="createNewBoard"
+        min="10"
       />
       <label class="mb-2" for="deadline">Дедлайн</label>
       <input
@@ -26,14 +26,13 @@
         required
         id="deadline"
         type="datetime-local"
-        @keypress.enter="createNewBoard"
       />
       <button @click.prevent="createNewCard(id)" class="button">Создать</button>
     </form>
   </Modal>
 </template>
 <script lang="ts">
-import { Card, BoardGroup } from "@/types";
+import { Card, Board } from "@/types";
 import Modal from "./common/Modal.vue";
 import { ru } from "date-fns/locale";
 import { format } from "date-fns";
@@ -44,7 +43,10 @@ export default {
     Modal,
   },
   props: {
-    id: Number,
+    id: {
+      type: Number,
+      default: () => 0,
+    },
   },
   data(): { title: string; desc: string; deadline: Date } {
     return {
@@ -63,11 +65,11 @@ export default {
           locale: ru,
         }),
       };
-      if (this.title && this.desc) {
-        let ls = JSON.parse(localStorage.getItem("data") as string);
-        const activeBoardId = ls.findIndex((board: BoardGroup) => board.active);
-        ls[activeBoardId].boards[id].cards.push(newCard);
-        localStorage.data = JSON.stringify(ls);
+      if (this.title && this.desc && this.deadline > new Date()) {
+        let boards = JSON.parse(localStorage.getItem("boards") as string);
+        const activeBoardId = boards.findIndex((board: Board) => board.active);
+        boards[activeBoardId].columns[id].cards.push(newCard);
+        localStorage.boards = JSON.stringify(boards);
         this.$refs.modal.show = false;
         this.title = "";
         this.desc = "";
@@ -76,4 +78,4 @@ export default {
   },
 };
 </script>
-<style lang="css"></style>
+<style lang="scss"></style>

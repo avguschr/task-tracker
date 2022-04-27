@@ -1,7 +1,7 @@
 <template lang="html">
   <div v-if="showMenu" :class="animation" class="menu pt-2 position-absolute">
     <div
-      class="title container d-flex justify-content-between align-items-center mb-1"
+      class="menu-title container d-flex justify-content-between align-items-center mb-2"
     >
       <h3>Доски</h3>
       <i @click="closeMenu" class="fa-solid fa-xmark"></i>
@@ -28,7 +28,7 @@
 </template>
 <script lang="ts">
 // import data from "../data";
-import { BoardGroup } from "../types";
+import { Board } from "../types";
 import CreateBoard from "./CreateBoard.vue";
 
 export default {
@@ -37,17 +37,24 @@ export default {
     CreateBoard,
   },
   props: {
-    switchBoards: Function,
+    switchBoards: {
+      type: Function,
+      default: (): void => {
+        () => {
+          return;
+        };
+      },
+    },
   },
   data(): {
     showMenu: boolean;
-    menuItems: BoardGroup[];
+    menuItems: Board[];
     animation: string;
     active: boolean;
   } {
     return {
       showMenu: false,
-      menuItems: JSON.parse(localStorage.getItem("data") as string),
+      menuItems: JSON.parse(localStorage.getItem("boards") as string),
       animation: "forward",
       active: false,
     };
@@ -65,7 +72,9 @@ export default {
   },
 };
 </script>
-<style scoped lang="css">
+<style scoped lang="scss">
+@import "../../public/styles/sizes";
+@import "../../public/styles/colors";
 .menu {
   width: 30%;
   height: 100vh;
@@ -77,29 +86,22 @@ export default {
   z-index: 99;
 }
 
-.menu .title i {
-  font-size: 35px;
+.menu .menu-title i {
   cursor: pointer;
+  color: $liberty;
 }
 
-.menu ul {
-  padding: 0;
-}
-.menu ul li {
-  list-style: none;
+.menu .menu-title {
+  font-size: $title-1;
 }
 
-.menu h3 {
-  color: rgba(39, 45, 107);
+.menu .menu-title,
+.menu .menu-title i:hover {
+  color: $deep-koamaru;
 }
 
-.menu i {
+.menu .create-board i {
   margin-right: 1vh;
-  color: #4257a6;
-}
-
-.menu i:hover {
-  color: rgba(39, 45, 107);
 }
 
 .back {
@@ -112,18 +114,22 @@ export default {
 
 .create-board {
   cursor: pointer;
-  color: #4257a6;
+  color: $liberty;
 }
 
 .create-board:hover i,
 .create-board:hover p {
-  color: rgba(39, 45, 107);
+  color: $deep-koamaru;
 }
 
 .active {
-  background: red;
-  background: #4257a6;
+  background: $liberty;
   color: #fff;
+}
+
+.menu ul {
+  padding: 0;
+  list-style: none;
 }
 
 @keyframes menu-animation {
