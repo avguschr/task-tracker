@@ -6,10 +6,10 @@
     >
       <column
         :updateBoards="updateBoards"
-        v-for="(board, index) in boards.find((board: Board) => board.active).columns"
+        v-for="(column, index) in boards.find((board: Board) => board.active).columns"
         :key="index"
         class="col"
-        :board="board"
+        :column="column"
         :id="index"
       />
     </div>

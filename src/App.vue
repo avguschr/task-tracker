@@ -1,6 +1,6 @@
 <template>
   <div>
-    <boards-menu :switchBoards="switchBoards" ref="switchBoards" />
+    <boards-menu ref="switchBoards" />
     <options-menu ref="optionsMenu" />
     <Nav
       :openSwitchBoards="openSwitchBoards"
@@ -17,7 +17,6 @@ import OptionsMenu from "./components/OptionsMenu.vue";
 import Nav from "./components/Nav.vue";
 import { Board } from "./types";
 import { mainBoard } from "./mainBoard";
-import boards from "./data";
 
 export default {
   components: {
@@ -25,6 +24,11 @@ export default {
     BoardsMenu,
     OptionsMenu,
     Nav,
+  },
+  data(): { boards: Board[] } {
+    return {
+      boards: JSON.parse(localStorage.getItem("boards") as string),
+    };
   },
   methods: {
     openSwitchBoards(): void {
@@ -37,12 +41,16 @@ export default {
       this.$refs.optionsMenu.showMenu = true;
       this.$refs.optionsMenu.animation = "forward";
     },
-    switchBoards(id: number): void {
-      console.log(boards);
-      boards.filter((board: Board) => board.active === true)[0].active = false;
-      boards[id].active = true;
-      localStorage.boards = JSON.stringify(boards);
+    updateBoards(): void {
+      this.boards = JSON.parse(localStorage.getItem("boards") as string);
     },
+    // switchBoards(id: number): void {
+    //   this.boards.filter((board: Board) => board.active === true)[0].active =
+    //     false;
+    //   this.boards[id].active = true;
+    //   localStorage.boards = JSON.stringify(this.boards);
+    //   this.updateBoards();
+    // },
     addLocalStorage() {
       let boards: Board[] = [];
       boards.push(mainBoard);

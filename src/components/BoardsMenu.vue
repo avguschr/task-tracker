@@ -65,6 +65,7 @@ export default {
       setTimeout(() => {
         this.showMenu = false;
       }, 1000);
+      this.updateBoards();
     },
     openModal(): void {
       this.$refs.createBoard.$refs.modal.show = true;
@@ -73,8 +74,7 @@ export default {
       this.boards = JSON.parse(localStorage.getItem("boards") as string);
     },
     switchBoards(id: number): void {
-      this.boards.filter((board: Board) => board.active === true)[0].active =
-        false;
+      this.boards.find((board: Board) => board.active === true).active = false;
       this.boards[id].active = true;
       localStorage.boards = JSON.stringify(this.boards);
       this.updateBoards();

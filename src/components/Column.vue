@@ -3,9 +3,9 @@
     <create-card :updateBoards="updateBoards" ref="createCard" :id="id" />
     <div class="column">
       <div class="column-title d-flex justify-content-between p-2">
-        {{ board.title }}
+        {{ column.title }}
         <div>
-          <i class="fa-solid fa-trash-can"></i>
+          <i @click="deleteColumn(id)" class="fa-solid fa-trash-can"></i>
         </div>
       </div>
       <div
@@ -14,7 +14,7 @@
         <div class="cards">
           <Card
             :card="card"
-            v-for="(card, index) in board.cards"
+            v-for="(card, index) in column.cards"
             :key="index"
           />
         </div>
@@ -38,7 +38,7 @@ export default {
   },
   props: {
     updateBoards: Function,
-    board: {
+    column: {
       type: Object as PropType<Column>,
       default: () => ({
         title: "Карточка",
@@ -54,15 +54,30 @@ export default {
       default: () => [],
     },
   },
+  data(): { boards: Board[] } {
+    return {
+      boards: JSON.parse(localStorage.getItem("boards") as string),
+    };
+  },
   methods: {
     openModal() {
       this.$refs.createCard.$refs.modal.show = true;
+    },
+    deleteColumn(id: number): void {
+      const activeBoardId = this.boards.findIndex(
+        (board: Board) => board.active
+      );
+      console.log(this.boards[activeBoardId].columns.splice(id, 1));
+      this.boards[activeBoardId].columns.splice(id, 1);
+      localStorage.boards = JSON.stringify(this.boards);
+      this.updateBoards();
     },
   },
 };
 </script>
 <style scoped lang="scss">
 @import "../../public/styles/sizes";
+@import "../../public/styles/colors";
 .column {
   background: #fff;
   border-radius: 10px;
@@ -75,23 +90,27 @@ export default {
   color: #fff;
   text-align: center;
   font-size: $title-2;
-  background-color: #4257a6;
+  background-color: $liberty;
   border-radius: 10px 10px 0 0;
 }
 
 .column .column-content button {
   background: none;
-  color: #a1ae90;
+  color: $locust;
   border: none;
   outline: inherit;
   transition: color ease-in-out 1s;
 }
 
 .column .column-content button:hover {
-  color: #272d6b;
+  color: $deep-koamaru;
 }
 
 .column .column-content .cards {
   width: 100%;
+}
+
+.column .column-title i {
+  cursor: pointer;
 }
 </style>
