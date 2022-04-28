@@ -92,7 +92,9 @@ export default {
     outline: none;
   }
   input:active,
-  input:focus {
+  input:focus,
+  textarea:active,
+  textarea:focus {
     background-color: #fff;
     border: solid #272d6b 1.5px;
   }

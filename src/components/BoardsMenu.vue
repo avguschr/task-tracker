@@ -15,7 +15,7 @@
         <li
           @click="switchBoards(index)"
           class="mb-2 container pb-1 pt-1"
-          v-for="(board, index) in menuItems"
+          v-for="(board, index) in boards"
           :key="index"
           :class="[board.active ? 'active' : null]"
         >
@@ -23,7 +23,7 @@
         </li>
       </ul>
     </div>
-    <create-board ref="createBoard" />
+    <create-board :updateBoards="updateBoards" ref="createBoard" />
   </div>
 </template>
 <script lang="ts">
@@ -36,25 +36,25 @@ export default {
   components: {
     CreateBoard,
   },
-  props: {
-    switchBoards: {
-      type: Function,
-      default: (): void => {
-        () => {
-          return;
-        };
-      },
-    },
-  },
+  // props: {
+  //   switchBoards: {
+  //     type: Function,
+  //     default: (): void => {
+  //       () => {
+  //         return;
+  //       };
+  //     },
+  //   },
+  // },
   data(): {
     showMenu: boolean;
-    menuItems: Board[];
+    boards: Board[];
     animation: string;
     active: boolean;
   } {
     return {
       showMenu: false,
-      menuItems: JSON.parse(localStorage.getItem("boards") as string),
+      boards: JSON.parse(localStorage.getItem("boards") as string),
       animation: "forward",
       active: false,
     };
@@ -68,6 +68,16 @@ export default {
     },
     openModal(): void {
       this.$refs.createBoard.$refs.modal.show = true;
+    },
+    updateBoards(): void {
+      this.boards = JSON.parse(localStorage.getItem("boards") as string);
+    },
+    switchBoards(id: number): void {
+      this.boards.filter((board: Board) => board.active === true)[0].active =
+        false;
+      this.boards[id].active = true;
+      localStorage.boards = JSON.stringify(this.boards);
+      this.updateBoards();
     },
   },
 };

@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="mb-2">
-    <create-card ref="createCard" :id="id" />
+    <create-card :updateBoards="updateBoards" ref="createCard" :id="id" />
     <div class="column">
       <div class="column-title d-flex justify-content-between p-2">
         {{ board.title }}
@@ -37,6 +37,7 @@ export default {
     CreateCard,
   },
   props: {
+    updateBoards: Function,
     board: {
       type: Object as PropType<Column>,
       default: () => ({

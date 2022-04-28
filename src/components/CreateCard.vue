@@ -43,6 +43,7 @@ export default {
     Modal,
   },
   props: {
+    updateBoards: Function,
     id: {
       type: Number,
       default: () => 0,
@@ -65,15 +66,14 @@ export default {
           locale: ru,
         }),
       };
-      if (this.title && this.desc && this.deadline > new Date()) {
-        let boards = JSON.parse(localStorage.getItem("boards") as string);
-        const activeBoardId = boards.findIndex((board: Board) => board.active);
-        boards[activeBoardId].columns[id].cards.push(newCard);
-        localStorage.boards = JSON.stringify(boards);
-        this.$refs.modal.show = false;
-        this.title = "";
-        this.desc = "";
-      }
+      let boards = JSON.parse(localStorage.getItem("boards") as string);
+      const activeBoardId = boards.findIndex((board: Board) => board.active);
+      boards[activeBoardId].columns[id].cards.push(newCard);
+      localStorage.boards = JSON.stringify(boards);
+      this.$refs.modal.show = false;
+      this.title = "";
+      this.desc = "";
+      this.updateBoards();
     },
   },
 };

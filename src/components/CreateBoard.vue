@@ -23,6 +23,9 @@ export default {
   components: {
     Modal,
   },
+  props: {
+    updateBoards: Function,
+  },
   data(): { title: string } {
     return {
       title: "",
@@ -42,6 +45,7 @@ export default {
       boards.push(newBoard);
       localStorage.boards = JSON.stringify(boards);
       this.$refs.modal.show = false;
+      this.updateBoards();
     },
   },
 };

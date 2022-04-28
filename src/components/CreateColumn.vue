@@ -23,6 +23,9 @@ export default {
   components: {
     Modal,
   },
+  props: {
+    updateBoards: Function,
+  },
   data(): { title: string } {
     return {
       title: "",
@@ -42,6 +45,7 @@ export default {
         this.$refs.modal.show = false;
         this.title = "";
       }
+      this.updateBoards();
     },
   },
 };

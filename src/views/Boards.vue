@@ -1,11 +1,12 @@
 <template lang="html">
   <div class="container pt-4">
-    <create-column ref="createColumn" />
+    <create-column :updateBoards="updateBoards" ref="createColumn" />
     <div
       class="d-flex flex-row row row-cols-1 row-cols-sm-1 row-cols-md-3 row-col-lg-3 position-relative"
     >
       <column
-        v-for="(board, index) in boards.filter((board: Board) => board.active)[0].columns"
+        :updateBoards="updateBoards"
+        v-for="(board, index) in boards.find((board: Board) => board.active).columns"
         :key="index"
         class="col"
         :board="board"
@@ -23,22 +24,24 @@
 <script lang="ts">
 import Column from "../components/Column.vue";
 import CreateColumn from "../components/CreateColumn.vue";
-import boards from "../data";
 import { Board } from "@/types";
 export default {
   name: "boards-component",
-  data(): { boards: Board[] } {
-    return {
-      boards: boards,
-    };
-  },
   components: {
     Column,
     CreateColumn,
   },
+  data(): { boards: Board[] } {
+    return {
+      boards: JSON.parse(localStorage.getItem("boards") as string),
+    };
+  },
   methods: {
     openModal(): void {
       this.$refs.createColumn.$refs.modal.show = true;
+    },
+    updateBoards(): void {
+      this.boards = JSON.parse(localStorage.getItem("boards") as string);
     },
   },
 };
