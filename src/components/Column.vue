@@ -5,7 +5,7 @@
     <div class="column">
       <div class="column-title d-flex justify-content-between p-2">
         {{ column.title }}
-        <div v-if="boards.findIndex((board: Board) => board.active)">
+        <div v-if="activeBoardId">
           <i @click="openModalDeleteColumn" class="fa-solid fa-trash-can"></i>
         </div>
       </div>
@@ -55,9 +55,9 @@ export default {
       type: Number,
       default: 0,
     },
-    data: {
-      type: Array as PropType<Board[]>,
-      default: () => [],
+    activeBoardId: {
+      type: Number,
+      default: () => 0,
     },
   },
   data(): { boards: Board[] } {

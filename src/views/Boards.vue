@@ -13,6 +13,7 @@
         :column="column"
         :id="index"
         :boards="boards"
+        :activeBoardId="activeBoardId"
       />
     </div>
     <div
@@ -48,6 +49,10 @@ export default {
       default: (): Board[] => {
         return [];
       },
+    },
+    activeBoardId: {
+      type: Number,
+      default: () => 0,
     },
     updateBoards: Function,
   },

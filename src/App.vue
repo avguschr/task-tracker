@@ -11,7 +11,13 @@
       :openSwitchBoards="openSwitchBoards"
       :openOptionsMenu="openOptionsMenu"
     />
-    <boards :boards="boards" :updateBoards="updateBoards" />
+    <boards
+      :boards="boards"
+      :activeBoardId="boards.findIndex(
+        (board: Board) => board.active
+      )"
+      :updateBoards="updateBoards"
+    />
   </div>
 </template>
 
