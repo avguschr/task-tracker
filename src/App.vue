@@ -1,12 +1,17 @@
 <template>
   <div>
-    <boards-menu ref="switchBoards" />
+    <boards-menu
+      :switchBoards="switchBoards"
+      :boards="boards"
+      :updateBoards="updateBoards"
+      ref="switchBoards"
+    />
     <options-menu ref="optionsMenu" />
     <Nav
       :openSwitchBoards="openSwitchBoards"
       :openOptionsMenu="openOptionsMenu"
     />
-    <boards />
+    <boards :boards="boards" :updateBoards="updateBoards" />
   </div>
 </template>
 
@@ -51,6 +56,12 @@ export default {
     },
     openModal(): void {
       this.$refs.createBoard.show = true;
+    },
+    switchBoards(id: number): void {
+      this.boards.find((board: Board) => board.active === true).active = false;
+      this.boards[id].active = true;
+      localStorage.boards = JSON.stringify(this.boards);
+      this.updateBoards();
     },
   },
   created() {

@@ -5,7 +5,7 @@
     <div class="column">
       <div class="column-title d-flex justify-content-between p-2">
         {{ column.title }}
-        <div>
+        <div v-if="boards.findIndex((board: Board) => board.active)">
           <i @click="openModalDeleteColumn" class="fa-solid fa-trash-can"></i>
         </div>
       </div>

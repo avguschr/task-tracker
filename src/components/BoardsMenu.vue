@@ -27,8 +27,6 @@
   </div>
 </template>
 <script lang="ts">
-// import data from "../data";
-import { Board } from "../types";
 import CreateBoard from "./CreateBoard.vue";
 
 export default {
@@ -36,25 +34,27 @@ export default {
   components: {
     CreateBoard,
   },
-  // props: {
-  //   switchBoards: {
-  //     type: Function,
-  //     default: (): void => {
-  //       () => {
-  //         return;
-  //       };
-  //     },
-  //   },
-  // },
+  props: {
+    switchBoards: {
+      type: Function,
+      default: (): void => {
+        () => {
+          return;
+        };
+      },
+    },
+    boards: {
+      type: Array,
+    },
+    updateBoards: Function,
+  },
   data(): {
     showMenu: boolean;
-    boards: Board[];
     animation: string;
     active: boolean;
   } {
     return {
       showMenu: false,
-      boards: JSON.parse(localStorage.getItem("boards") as string),
       animation: "forward",
       active: false,
     };
@@ -65,19 +65,10 @@ export default {
       setTimeout(() => {
         this.showMenu = false;
       }, 1000);
-      this.updateBoards();
+      // this.updateBoards();
     },
     openModal(): void {
       this.$refs.createBoard.$refs.modal.show = true;
-    },
-    updateBoards(): void {
-      this.boards = JSON.parse(localStorage.getItem("boards") as string);
-    },
-    switchBoards(id: number): void {
-      this.boards.find((board: Board) => board.active === true).active = false;
-      this.boards[id].active = true;
-      localStorage.boards = JSON.stringify(this.boards);
-      this.updateBoards();
     },
   },
 };
@@ -140,6 +131,10 @@ export default {
 .menu ul {
   padding: 0;
   list-style: none;
+}
+
+.menu ul li {
+  cursor: pointer;
 }
 
 @keyframes menu-animation {

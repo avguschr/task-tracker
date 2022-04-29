@@ -31,7 +31,10 @@
         <button @click.prevent="updateCard(columnId, cardId)" class="button">
           Изменить
         </button>
-        <button @click.prevent="deleteCard" class="button-warning">
+        <button
+          @click.prevent="deleteCard(columnId, cardId)"
+          class="button-warning"
+        >
           Удалить
         </button>
       </div>
@@ -42,6 +45,8 @@
 import { Card, Board } from "@/types";
 import Modal from "./common/Modal.vue";
 import { PropType } from "@vue/runtime-core";
+import { ru } from "date-fns/locale";
+import { format } from "date-fns";
 
 export default {
   name: "create-card",
@@ -74,14 +79,24 @@ export default {
       const updatedCard = {
         title: this.title,
         desc: this.desc,
-        deadline: this.deadline,
+        deadline: Date.parse(this.deadline)
+          ? format(Date.parse(this.deadline), "dd MMMM yyyy H:mm", {
+              locale: ru,
+            })
+          : this.deadline,
         date: this.card.date,
       };
-      console.log("колонка " + columnId);
-      console.log("карточка " + cardId);
       let boards = JSON.parse(localStorage.getItem("boards") as string);
       const activeBoardId = boards.findIndex((board: Board) => board.active);
       boards[activeBoardId].columns[columnId].cards[cardId] = updatedCard;
+      localStorage.boards = JSON.stringify(boards);
+      this.updateBoards();
+      this.$refs.modal.show = false;
+    },
+    deleteCard(columnId: number, cardId: number): void {
+      let boards = JSON.parse(localStorage.getItem("boards") as string);
+      const activeBoardId = boards.findIndex((board: Board) => board.active);
+      boards[activeBoardId].columns[columnId].cards.splice(cardId, 1);
       localStorage.boards = JSON.stringify(boards);
       this.updateBoards();
       this.$refs.modal.show = false;

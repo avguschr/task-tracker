@@ -15,7 +15,7 @@
 import Modal from "./common/Modal.vue";
 
 export default {
-  name: "create-column",
+  name: "delete-column",
   components: {
     Modal,
   },
