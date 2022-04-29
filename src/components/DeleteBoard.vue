@@ -29,8 +29,8 @@ export default {
     deleteBoard(): void {
       let boards = JSON.parse(localStorage.getItem("boards") as string);
       const activeBoardId = boards.findIndex((board: Board) => board.active);
-      boards.splice(activeBoardId, 1);
       boards[activeBoardId].active = false;
+      boards.splice(activeBoardId, 1);
       boards[0].active = true;
       localStorage.boards = JSON.stringify(boards);
       this.updateBoards();

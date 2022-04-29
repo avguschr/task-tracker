@@ -32,7 +32,7 @@
   </Modal>
 </template>
 <script lang="ts">
-import { Card, Board } from "@/types";
+import { Card, Board, WeekColors } from "@/types";
 import Modal from "./common/Modal.vue";
 import { ru } from "date-fns/locale";
 import { format } from "date-fns";
@@ -49,14 +49,32 @@ export default {
       default: () => 0,
     },
   },
-  data(): { title: string; desc: string; deadline: Date } {
+  data(): {
+    title: string;
+    desc: string;
+    deadline: Date;
+    weekColors: WeekColors;
+  } {
     return {
       title: "",
       desc: "",
       deadline: new Date(),
+      weekColors: {
+        mon: "#fdf9e0",
+        tue: "#ffddd2",
+        wed: "#d5c2d5",
+        thu: "#5ea9bc",
+        fri: "#9acdde",
+        sat: "#cbe1ef",
+        sun: "#dae5d9",
+      },
     };
   },
   methods: {
+    getWeekColor(date: Date): string {
+      const days = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+      return this.weekColors[days[date.getDay()]];
+    },
     createNewCard(id: number): void {
       const newCard: Card = {
         title: this.title,
@@ -65,6 +83,7 @@ export default {
         deadline: format(Date.parse(this.deadline), "dd MMMM yyyy H:mm", {
           locale: ru,
         }),
+        color: this.getWeekColor(new Date()),
       };
       let boards = JSON.parse(localStorage.getItem("boards") as string);
       const activeBoardId = boards.findIndex((board: Board) => board.active);

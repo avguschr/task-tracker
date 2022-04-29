@@ -17,6 +17,7 @@
       />
     </div>
     <div
+      v-if="boards.findIndex((board: Board) => board.active)"
       class="position-fixed d-flex justify-content-center align-items-center bottom-0 start-50 translate-middle"
     >
       <div
@@ -26,7 +27,6 @@
         <i class="fa-solid fa-plus"></i>
       </div>
       <div
-        v-if="boards.findIndex((board: Board) => board.active)"
         @click="openDeleteModal"
         class="board-action d-flex justify-content-center align-items-center p-2"
       >

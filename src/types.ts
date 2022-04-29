@@ -3,6 +3,7 @@ export type Card = {
   desc: string;
   date: string;
   deadline: string;
+  color: string;
 };
 
 export type Column = {
@@ -14,4 +15,14 @@ export type Board = {
   title: string;
   active: boolean;
   columns: Column[];
+};
+
+export type WeekColors = {
+  mon: string;
+  tue: string;
+  wed: string;
+  thu: string;
+  fri: string;
+  sat: string;
+  sun: string;
 };

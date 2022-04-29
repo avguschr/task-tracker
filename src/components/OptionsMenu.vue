@@ -6,7 +6,18 @@
       <h3>Меню</h3>
       <i @click="closeMenu" class="fa-solid fa-xmark"></i>
     </div>
-    <div></div>
+    <div class="container">
+      <div>
+        <h5 class="mb-1">Фон</h5>
+        <div
+          class="d-flex flex-row row row-cols-1 row-cols-sm-1 row-cols-md-3 row-col-lg-3"
+        >
+          <div class="background-item col"></div>
+          <div class="background-item col"></div>
+          <div class="background-item col"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <script lang="ts">
@@ -89,5 +100,11 @@ export default {
   100% {
     left: -50%;
   }
+}
+
+.background-item {
+  background: rgb(0, 255, 13);
+  background-clip: content-box;
+  height: 10vh;
 }
 </style>

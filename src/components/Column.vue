@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="mb-2">
+  <div class="mb-2 main-column-block">
     <delete-column :deleteColumn="deleteColumn" :id="id" ref="deleteColumn" />
     <create-card :updateBoards="updateBoards" ref="createCard" :id="id" />
     <div class="column">
@@ -12,7 +12,7 @@
       <div
         class="column-content d-flex flex-column justify-content-between align-items-start p-2"
       >
-        <div class="cards">
+        <div class="cards mb-3">
           <Card
             :updateBoards="updateBoards"
             :card="card"
@@ -88,11 +88,12 @@ export default {
 @import "../../public/styles/sizes";
 @import "../../public/styles/colors";
 .column {
-  background: #fff;
+  background: $gallery;
+}
+
+.column,
+.main-column-block {
   border-radius: 10px;
-  -webkit-box-shadow: 0px 0px 78px -60px rgba(34, 60, 80, 0.3);
-  -moz-box-shadow: 0px 0px 78px -60px rgba(34, 60, 80, 0.3);
-  box-shadow: 0px 0px 78px -60px rgba(34, 60, 80, 0.3);
 }
 
 .column .column-title {

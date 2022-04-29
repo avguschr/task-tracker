@@ -1,6 +1,9 @@
 <template lang="html">
   <div class="board-card mb-2">
-    <div class="title d-flex align-items-center justify-content-between">
+    <div
+      :style="{ background: card.color }"
+      class="title d-flex align-items-center justify-content-between"
+    >
       {{ card.title }}
       <div class="date p-1" title="Создано">
         <p>{{ card.date }}</p>
@@ -71,7 +74,7 @@ export default {
 @import "../../public/styles/colors";
 
 .board-card {
-  background-color: $gallery;
+  background-color: #fff;
   border-radius: 10px;
   -webkit-box-shadow: 0px 0px 78px -60px rgba(34, 60, 80, 0.3);
   -moz-box-shadow: 0px 0px 78px -60px rgba(34, 60, 80, 0.3);
@@ -79,7 +82,6 @@ export default {
 }
 
 .board-card .title {
-  background: $locust;
   border-radius: 10px 10px 0 0;
   padding: 1vh;
   font-size: $title-3;

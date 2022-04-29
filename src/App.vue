@@ -83,7 +83,7 @@ export default {
 #app {
   height: 200px;
   height: 453px;
-  background: $gainsboro;
+  background: $black-haze;
   background-size: cover;
   font-family: "Dancing Script", cursive;
   font-family: "Nunito", sans-serif;
