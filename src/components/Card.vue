@@ -14,26 +14,54 @@
           <p>{{ card.desc }}</p>
         </div>
       </div>
-      <div class="d-flex justify-content-between">
+      <div class="d-flex justify-content-between align-items-center bottom">
         <div class="deadline p-1 d-flex align-items-center" title="Дедлайн">
           <i class="fa-solid fa-clock"></i>
           <p>{{ card.deadline }}</p>
         </div>
+        <div class="options d-flex">
+          <i @click="openModalUpdate" class="fa-solid fa-gear"></i>
+        </div>
       </div>
     </div>
+    <update-card
+      :updateBoards="updateBoards"
+      :card="card"
+      :columnId="columnId"
+      :cardId="cardId"
+      ref="updateCard"
+    />
   </div>
 </template>
 <script lang="ts">
 import { Card } from "@/types";
 import { PropType } from "@vue/runtime-core";
+import UpdateCard from "./UpdateCard.vue";
 export default {
   name: "card-component",
+  components: {
+    UpdateCard,
+  },
   props: {
+    cardId: {
+      type: Number,
+      default: () => 0,
+    },
+    columnId: {
+      type: Number,
+      default: () => 0,
+    },
+    updateBoards: Function,
     card: {
       type: Object as PropType<Card>,
       default: () => {
         return {};
       },
+    },
+  },
+  methods: {
+    openModalUpdate(): void {
+      this.$refs.updateCard.$refs.modal.show = true;
     },
   },
 };
@@ -75,5 +103,29 @@ export default {
 .board-card .deadline i {
   margin-right: 1vh;
   font-size: $text;
+}
+.board-card .bottom {
+  width: 100%;
+}
+.board-card .options i {
+  font-size: $title-2;
+  color: $liberty;
+  cursor: pointer;
+}
+
+.board-card .options i:hover {
+  animation: options-rotate 4s linear infinite;
+}
+
+@keyframes options-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
 }
 </style>

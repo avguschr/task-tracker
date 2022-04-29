@@ -44,13 +44,6 @@ export default {
     updateBoards(): void {
       this.boards = JSON.parse(localStorage.getItem("boards") as string);
     },
-    // switchBoards(id: number): void {
-    //   this.boards.filter((board: Board) => board.active === true)[0].active =
-    //     false;
-    //   this.boards[id].active = true;
-    //   localStorage.boards = JSON.stringify(this.boards);
-    //   this.updateBoards();
-    // },
     addLocalStorage() {
       let boards: Board[] = [];
       boards.push(mainBoard);
@@ -69,10 +62,11 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../public/styles/colors";
 #app {
   height: 200px;
   height: 453px;
-  background: #dddcd7;
+  background: $gainsboro;
   background-size: cover;
   font-family: "Dancing Script", cursive;
   font-family: "Nunito", sans-serif;
@@ -94,8 +88,8 @@ export default {
     padding: 8px 16px;
     color: black;
     border: none;
-    background-color: #f1f0ee;
-    border: solid #f1f0ee 1.5px;
+    background-color: $gallery;
+    border: solid $gallery 1.5px;
     margin-bottom: 1rem;
     outline: none;
   }
@@ -104,13 +98,25 @@ export default {
   textarea:active,
   textarea:focus {
     background-color: #fff;
-    border: solid #272d6b 1.5px;
+    border: solid $deep-koamaru 1.5px;
   }
   .button {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background: #4257a6;
+    background: $liberty;
+    border: none;
+    border-radius: 10px;
+    padding: 8px 16px;
+    color: #fff;
+    transition: box-shadow linear 0.1s;
+  }
+
+  .button-warning {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: $pastel-red;
     border: none;
     border-radius: 10px;
     padding: 8px 16px;

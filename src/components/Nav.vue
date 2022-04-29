@@ -44,6 +44,7 @@ export default {
 </script>
 <style scoped lang="scss">
 @import "../../public/styles/colors";
+@import "../../public/styles/sizes";
 .nav {
   padding: 1vh;
   width: 100%;
@@ -58,7 +59,7 @@ export default {
 .nav .nav-item {
   background-color: rgba(255, 255, 255, 0.356);
   border-radius: 10px;
-  font-size: 3vh;
+  font-size: $text;
   cursor: pointer;
   transition-property: background-color;
   transition-duration: 1s;

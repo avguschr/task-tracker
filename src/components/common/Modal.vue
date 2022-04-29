@@ -31,7 +31,9 @@ export default {
   },
 };
 </script>
-<style scoped lang="css">
+<style scoped lang="scss">
+@import "../../../public/styles/colors";
+@import "../../../public/styles/sizes";
 .modal-window {
   position: fixed;
   height: 100%;
@@ -50,15 +52,13 @@ export default {
 }
 
 .title i {
-  font-size: 35px;
+  font-size: $title-1;
   cursor: pointer;
+  color: $liberty;
 }
 
-.title i:hover {
-  color: rgba(39, 45, 107);
-}
-
+.title i:hover,
 .title h3 {
-  color: rgba(39, 45, 107);
+  color: $deep-koamaru;
 }
 </style>

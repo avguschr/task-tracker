@@ -1,11 +1,12 @@
 <template lang="html">
   <div class="mb-2">
+    <delete-column :deleteColumn="deleteColumn" :id="id" ref="deleteColumn" />
     <create-card :updateBoards="updateBoards" ref="createCard" :id="id" />
     <div class="column">
       <div class="column-title d-flex justify-content-between p-2">
         {{ column.title }}
         <div>
-          <i @click="deleteColumn(id)" class="fa-solid fa-trash-can"></i>
+          <i @click="openModalDeleteColumn" class="fa-solid fa-trash-can"></i>
         </div>
       </div>
       <div
@@ -13,12 +14,15 @@
       >
         <div class="cards">
           <Card
+            :updateBoards="updateBoards"
             :card="card"
             v-for="(card, index) in column.cards"
             :key="index"
+            :cardId="index"
+            :columnId="id"
           />
         </div>
-        <button @click="openModal" class="text-start">
+        <button @click="openModalCreateCard" class="text-start">
           Добавить карточку...
         </button>
       </div>
@@ -30,11 +34,13 @@ import { PropType } from "@vue/runtime-core";
 import Card from "./Card.vue";
 import { Board, Column } from "@/types";
 import CreateCard from "./CreateCard.vue";
+import DeleteColumn from "./DeleteColumn.vue";
 export default {
   name: "board-component",
   components: {
     Card,
     CreateCard,
+    DeleteColumn,
   },
   props: {
     updateBoards: Function,
@@ -60,17 +66,20 @@ export default {
     };
   },
   methods: {
-    openModal() {
+    openModalCreateCard() {
       this.$refs.createCard.$refs.modal.show = true;
+    },
+    openModalDeleteColumn() {
+      this.$refs.deleteColumn.$refs.modal.show = true;
     },
     deleteColumn(id: number): void {
       const activeBoardId = this.boards.findIndex(
         (board: Board) => board.active
       );
-      console.log(this.boards[activeBoardId].columns.splice(id, 1));
       this.boards[activeBoardId].columns.splice(id, 1);
       localStorage.boards = JSON.stringify(this.boards);
       this.updateBoards();
+      this.$refs.deleteColumns.$refs.modal.show = false;
     },
   },
 };
