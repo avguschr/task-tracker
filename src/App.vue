@@ -79,7 +79,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../public/styles/colors";
+@import "./src/assets/styles/sizes";
+@import "./src/assets/styles/colors";
 #app {
   height: 200px;
   height: 453px;

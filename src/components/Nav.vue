@@ -43,8 +43,8 @@ export default {
 };
 </script>
 <style scoped lang="scss">
-@import "../../public/styles/colors";
-@import "../../public/styles/sizes";
+@import "../assets/styles/sizes";
+@import "../assets/styles/colors";
 .nav {
   padding: 1vh;
   width: 100%;

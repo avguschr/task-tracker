@@ -1,20 +1,22 @@
 <template lang="html">
-  <div v-if="showMenu" :class="animation" class="menu pt-2 position-absolute">
-    <div
-      class="menu-title container d-flex justify-content-between align-items-center mb-1"
-    >
-      <h3>Меню</h3>
-      <i @click="closeMenu" class="fa-solid fa-xmark"></i>
-    </div>
-    <div class="container">
-      <div>
-        <h5 class="mb-1">Фон</h5>
-        <div
-          class="d-flex flex-row row row-cols-1 row-cols-sm-1 row-cols-md-3 row-col-lg-3"
-        >
-          <div class="background-item col"></div>
-          <div class="background-item col"></div>
-          <div class="background-item col"></div>
+  <div class="menu-container" v-if="showMenu">
+    <div :class="animation" class="menu pt-2 position-absolute">
+      <div
+        class="menu-title container d-flex justify-content-between align-items-center mb-1"
+      >
+        <h3>Меню</h3>
+        <i @click="closeMenu" class="fa-solid fa-xmark"></i>
+      </div>
+      <div class="container">
+        <div>
+          <h5 class="mb-1">Фон</h5>
+          <div
+            class="d-flex flex-row row row-cols-1 row-cols-sm-1 row-cols-md-3 row-col-lg-3"
+          >
+            <div class="background-item col"></div>
+            <div class="background-item col"></div>
+            <div class="background-item col"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -37,14 +39,26 @@ export default {
       this.animation = "back";
       setTimeout(() => {
         this.showMenu = false;
-      }, 1000);
+      }, 500);
     },
   },
 };
 </script>
 <style scoped lang="scss">
-@import "../../public/styles/sizes";
-@import "../../public/styles/colors";
+@import "../assets/styles/sizes";
+@import "../assets/styles/colors";
+
+.menu-container {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 99;
+  background: rgba(0, 0, 0, 0.24);
+  left: 0;
+  top: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
 
 .menu {
   width: 30%;

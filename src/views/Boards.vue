@@ -73,8 +73,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../../public/styles/sizes";
-@import "../../public/styles/colors";
+@import "../assets/styles/sizes";
+@import "../assets/styles/colors";
 .board-action {
   background: $liberty;
   color: #fff;

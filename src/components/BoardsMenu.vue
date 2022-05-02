@@ -1,29 +1,31 @@
 <template lang="html">
-  <div v-if="showMenu" :class="animation" class="menu pt-2 position-absolute">
-    <div
-      class="menu-title container d-flex justify-content-between align-items-center mb-2"
-    >
-      <h3>Доски</h3>
-      <i @click="closeMenu" class="fa-solid fa-xmark"></i>
-    </div>
-    <div>
-      <div @click="openModal" class="create-board mb-4 container">
-        <i class="fa-solid fa-plus mr-3 d-inline"></i>
-        <p class="d-inline">Создать доску</p>
+  <div v-if="showMenu" class="menu-container">
+    <div :class="animation" class="menu pt-2 position-absolute">
+      <div
+        class="menu-title container d-flex justify-content-between align-items-center mb-2"
+      >
+        <h3>Доски</h3>
+        <i @click="closeMenu" class="fa-solid fa-xmark"></i>
       </div>
-      <ul>
-        <li
-          @click="switchBoards(index)"
-          class="mb-2 container pb-1 pt-1"
-          v-for="(board, index) in boards"
-          :key="index"
-          :class="[board.active ? 'active' : null]"
-        >
-          {{ board.title }}
-        </li>
-      </ul>
+      <div>
+        <div @click="openModal" class="create-board mb-4 container">
+          <i class="fa-solid fa-plus mr-3 d-inline"></i>
+          <p class="d-inline">Создать доску</p>
+        </div>
+        <ul>
+          <li
+            @click="switchBoards(index)"
+            class="mb-2 container pb-1 pt-1"
+            v-for="(board, index) in boards"
+            :key="index"
+            :class="[board.active ? 'active' : null]"
+          >
+            {{ board.title }}
+          </li>
+        </ul>
+      </div>
+      <create-board :updateBoards="updateBoards" ref="createBoard" />
     </div>
-    <create-board :updateBoards="updateBoards" ref="createBoard" />
   </div>
 </template>
 <script lang="ts">
@@ -64,8 +66,7 @@ export default {
       this.animation = "back";
       setTimeout(() => {
         this.showMenu = false;
-      }, 1000);
-      // this.updateBoards();
+      }, 500);
     },
     openModal(): void {
       this.$refs.createBoard.$refs.modal.show = true;
@@ -74,8 +75,19 @@ export default {
 };
 </script>
 <style scoped lang="scss">
-@import "../../public/styles/sizes";
-@import "../../public/styles/colors";
+@import "../assets/styles/sizes";
+@import "../assets/styles/colors";
+.menu-container {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 99;
+  background: rgba(0, 0, 0, 0.24);
+  left: 0;
+  top: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
 .menu {
   width: 30%;
   height: 100vh;
@@ -84,7 +96,7 @@ export default {
   -webkit-box-shadow: 9px 0px 25px 0px rgba(34, 60, 80, 0.2);
   -moz-box-shadow: 9px 0px 25px 0px rgba(34, 60, 80, 0.2);
   box-shadow: 9px 0px 25px 0px rgba(34, 60, 80, 0.2);
-  z-index: 99;
+  z-index: 999;
 }
 
 .menu .menu-title i {

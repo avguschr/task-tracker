@@ -1,5 +1,5 @@
 <template lang="html">
-  <div @click="func" v-if="show" class="modal-window">
+  <div v-if="show" class="modal-window">
     <div class="position-fixed top-50 start-50 translate-middle p-3">
       <div
         class="title container d-flex justify-content-between align-items-center mb-1"
@@ -32,8 +32,8 @@ export default {
 };
 </script>
 <style scoped lang="scss">
-@import "../../../public/styles/colors";
-@import "../../../public/styles/sizes";
+@import "../../assets/styles/colors";
+@import "../../assets/styles/sizes";
 .modal-window {
   position: fixed;
   height: 100%;
@@ -60,5 +60,8 @@ export default {
 .title i:hover,
 .title h3 {
   color: $deep-koamaru;
+}
+.title h3 {
+  margin-right: 10vh !important;
 }
 </style>

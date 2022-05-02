@@ -13,14 +13,16 @@
         class="column-content d-flex flex-column justify-content-between align-items-start p-2"
       >
         <div class="cards mb-3">
-          <Card
-            :updateBoards="updateBoards"
-            :card="card"
-            v-for="(card, index) in column.cards"
-            :key="index"
-            :cardId="index"
-            :columnId="id"
-          />
+          <draggable @end="end" :list="column.cards" group="columns">
+            <Card
+              v-for="(card, index) in column.cards"
+              :key="index"
+              :updateBoards="updateBoards"
+              :card="card"
+              :cardId="index"
+              :columnId="id"
+            />
+          </draggable>
         </div>
         <button @click="openModalCreateCard" class="text-start">
           Добавить карточку...
@@ -35,12 +37,14 @@ import Card from "./Card.vue";
 import { Board, Column } from "@/types";
 import CreateCard from "./CreateCard.vue";
 import DeleteColumn from "./DeleteColumn.vue";
+import { VueDraggableNext } from "vue-draggable-next";
 export default {
   name: "board-component",
   components: {
     Card,
     CreateCard,
     DeleteColumn,
+    draggable: VueDraggableNext,
   },
   props: {
     updateBoards: Function,
@@ -66,27 +70,31 @@ export default {
     };
   },
   methods: {
-    openModalCreateCard() {
+    end() {
+      console.log(this.boards);
+      localStorage.boards = JSON.stringify(this.boards);
+    },
+    openModalCreateCard(): void {
       this.$refs.createCard.$refs.modal.show = true;
     },
-    openModalDeleteColumn() {
+    openModalDeleteColumn(): void {
       this.$refs.deleteColumn.$refs.modal.show = true;
     },
     deleteColumn(id: number): void {
       const activeBoardId = this.boards.findIndex(
         (board: Board) => board.active
       );
+      this.$refs.deleteColumns.$refs.modal.show = false;
       this.boards[activeBoardId].columns.splice(id, 1);
       localStorage.boards = JSON.stringify(this.boards);
       this.updateBoards();
-      this.$refs.deleteColumns.$refs.modal.show = false;
     },
   },
 };
 </script>
 <style scoped lang="scss">
-@import "../../public/styles/sizes";
-@import "../../public/styles/colors";
+@import "../assets/styles/sizes";
+@import "../assets/styles/colors";
 .column {
   background: $gallery;
 }
