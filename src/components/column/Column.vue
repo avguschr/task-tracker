@@ -1,19 +1,24 @@
 <template lang="html">
   <div class="mb-2 main-column-block">
-    <delete-column :deleteColumn="deleteColumn" :id="id" ref="deleteColumn" />
+    <delete-column :updateBoards="updateBoards" :id="id" ref="deleteColumn" />
     <create-card :updateBoards="updateBoards" ref="createCard" :id="id" />
     <div class="column">
       <div class="column-title d-flex justify-content-between p-2">
         {{ column.title }}
         <div v-if="activeBoardId">
+          <i class="fa-solid fa-pencil"></i>
           <i @click="openModalDeleteColumn" class="fa-solid fa-trash-can"></i>
         </div>
       </div>
       <div
         class="column-content d-flex flex-column justify-content-between align-items-start p-2"
       >
-        <div class="cards mb-3">
-          <draggable @end="end" :list="column.cards" group="columns">
+        <div class="cards">
+          <draggable
+            @start="dragStart = true"
+            :list="column.cards"
+            group="columns"
+          >
             <Card
               v-for="(card, index) in column.cards"
               :key="index"
@@ -33,10 +38,10 @@
 </template>
 <script lang="ts">
 import { PropType } from "@vue/runtime-core";
-import Card from "./Card.vue";
+import Card from "../card/Card.vue";
 import { Board, Column } from "@/types";
-import CreateCard from "./CreateCard.vue";
-import DeleteColumn from "./DeleteColumn.vue";
+import CreateCard from "../card/CreateCard.vue";
+import DeleteColumn from "../column/DeleteColumn.vue";
 import { VueDraggableNext } from "vue-draggable-next";
 export default {
   name: "board-component",
@@ -64,37 +69,32 @@ export default {
       default: () => 0,
     },
   },
-  data(): { boards: Board[] } {
+  data(): { boards: Board[]; dragStart: boolean } {
     return {
       boards: JSON.parse(localStorage.getItem("boards") as string),
+      dragStart: false,
     };
   },
   methods: {
-    end() {
-      console.log(this.boards);
-      localStorage.boards = JSON.stringify(this.boards);
-    },
+    // add(card: Card, columnId: number): void {
+    //   const activeBoardId = this.boards.findIndex(
+    //     (board: Board) => board.active
+    //   );
+    //   this.boards[activeBoardId].columns[columnId].cards.push(card);
+    //   localStorage.boards = JSON.stringify(this.boards);
+    // },
     openModalCreateCard(): void {
       this.$refs.createCard.$refs.modal.show = true;
     },
     openModalDeleteColumn(): void {
       this.$refs.deleteColumn.$refs.modal.show = true;
     },
-    deleteColumn(id: number): void {
-      const activeBoardId = this.boards.findIndex(
-        (board: Board) => board.active
-      );
-      this.$refs.deleteColumns.$refs.modal.show = false;
-      this.boards[activeBoardId].columns.splice(id, 1);
-      localStorage.boards = JSON.stringify(this.boards);
-      this.updateBoards();
-    },
   },
 };
 </script>
 <style scoped lang="scss">
-@import "../assets/styles/sizes";
-@import "../assets/styles/colors";
+@import "../../assets/styles/sizes";
+@import "../../assets/styles/colors";
 .column {
   background: $gallery;
 }
@@ -130,5 +130,26 @@ export default {
 
 .column .column-title i {
   cursor: pointer;
+  transition-property: color;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
+}
+.column .column-title i:first-child {
+  margin-right: 2vh;
+}
+.column .column-title i:hover {
+  color: $deep-koamaru;
+  animation: icons-rotate 0.5s;
+}
+@keyframes icons-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(20deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 </style>

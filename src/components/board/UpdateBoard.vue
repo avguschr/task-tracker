@@ -1,5 +1,5 @@
 <template lang="html">
-  <Modal ref="modal" title="Новая доска">
+  <Modal ref="modal" title="Редактирование доски">
     <form>
       <label class="mb-2" for="title">Заголовок</label>
       <input
@@ -8,18 +8,18 @@
         required
         id="title"
         type="text"
-        @keypress.enter="createNewBoard"
+        min="1"
       />
-      <button @click.prevent="createNewBoard" class="button">Создать</button>
+      <button @click.prevent="updateBoard" class="button">Изменить</button>
     </form>
   </Modal>
 </template>
 <script lang="ts">
 import { Board } from "@/types";
-import Modal from "./common/Modal.vue";
+import Modal from "../common/Modal.vue";
 
 export default {
-  name: "create-board",
+  name: "update-board",
   components: {
     Modal,
   },
@@ -28,26 +28,21 @@ export default {
   },
   data(): { title: string } {
     return {
-      title: "",
+      title: JSON.parse(localStorage.getItem("boards") as string).find(
+        (board: Board) => board.active
+      ).title,
     };
   },
   methods: {
-    createNewBoard(): void {
-      const newBoard: Board = {
-        title: this.title,
-        active: true,
-        columns: [],
-      };
+    updateBoard(): void {
       let boards = JSON.parse(localStorage.getItem("boards") as string);
-      boards.forEach((board: Board) => {
-        board.active = false;
-      });
-      boards.push(newBoard);
+      const activeBoardId = boards.findIndex((board: Board) => board.active);
+      boards[activeBoardId].title = this.title;
       localStorage.boards = JSON.stringify(boards);
-      this.$refs.modal.show = false;
       this.updateBoards();
+      this.$refs.modal.show = false;
     },
   },
 };
 </script>
-<style lang="scss"></style>
+<style scoped lang="scss"></style>

@@ -11,7 +11,7 @@
       :openSwitchBoards="openSwitchBoards"
       :openOptionsMenu="openOptionsMenu"
     />
-    <boards
+    <active-board
       :boards="boards"
       :activeBoardId="boards.findIndex(
         (board: Board) => board.active
@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts">
-import Boards from "./views/Boards.vue";
+import ActiveBoard from "./components/board/Board.vue";
 import BoardsMenu from "./components/BoardsMenu.vue";
 import OptionsMenu from "./components/OptionsMenu.vue";
 import Nav from "./components/Nav.vue";
@@ -31,7 +31,7 @@ import { mainBoard } from "./mainBoard";
 
 export default {
   components: {
-    Boards,
+    ActiveBoard,
     BoardsMenu,
     OptionsMenu,
     Nav,
@@ -82,12 +82,10 @@ export default {
 @import "./src/assets/styles/sizes";
 @import "./src/assets/styles/colors";
 #app {
-  height: 200px;
-  height: 453px;
   background: $black-haze;
   background-size: cover;
-  font-family: "Dancing Script", cursive;
   font-family: "Nunito", sans-serif;
+  scrollbar-width: thin;
 
   p,
   h1,
@@ -105,9 +103,8 @@ export default {
     border-radius: 10px;
     padding: 8px 16px;
     color: black;
-    border: none;
-    background-color: $gallery;
     border: solid $gallery 1.5px;
+    background-color: $gallery;
     margin-bottom: 1rem;
     outline: none;
   }

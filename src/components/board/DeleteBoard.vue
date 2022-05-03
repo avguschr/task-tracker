@@ -12,7 +12,7 @@
   </Modal>
 </template>
 <script lang="ts">
-import Modal from "./common/Modal.vue";
+import Modal from "../common/Modal.vue";
 import { Board } from "@/types";
 export default {
   name: "delete-board",
@@ -30,11 +30,11 @@ export default {
       let boards = JSON.parse(localStorage.getItem("boards") as string);
       const activeBoardId = boards.findIndex((board: Board) => board.active);
       boards[activeBoardId].active = false;
+      this.$refs.modal.show = false;
       boards.splice(activeBoardId, 1);
       boards[0].active = true;
       localStorage.boards = JSON.stringify(boards);
       this.updateBoards();
-      this.$refs.modal.show = false;
     },
   },
 };

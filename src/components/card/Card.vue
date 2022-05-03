@@ -4,7 +4,7 @@
       :style="{ background: card.color }"
       class="title d-flex align-items-center justify-content-between"
     >
-      {{ card.title }}
+      <h4>{{ card.title }}</h4>
       <div class="date p-1" title="Создано">
         <p>{{ card.date }}</p>
       </div>
@@ -70,8 +70,8 @@ export default {
 };
 </script>
 <style scoped lang="scss">
-@import "../assets/styles/sizes";
-@import "../assets/styles/colors";
+@import "../../assets/styles/sizes";
+@import "../../assets/styles/colors";
 
 .board-card {
   background-color: #fff;
@@ -79,12 +79,17 @@ export default {
   -webkit-box-shadow: 0px 0px 78px -60px rgba(34, 60, 80, 0.3);
   -moz-box-shadow: 0px 0px 78px -60px rgba(34, 60, 80, 0.3);
   box-shadow: 0px 0px 78px -60px rgba(34, 60, 80, 0.3);
+  width: 100%;
 }
 
 .board-card .title {
   border-radius: 10px 10px 0 0;
   padding: 1vh;
+}
+
+.board-card .title h4 {
   font-size: $title-3;
+  margin-right: 5vh !important;
 }
 
 .board-card .date {

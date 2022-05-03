@@ -29,7 +29,7 @@
   </div>
 </template>
 <script lang="ts">
-import CreateBoard from "./CreateBoard.vue";
+import CreateBoard from "./board/CreateBoard.vue";
 
 export default {
   name: "boards-menu",

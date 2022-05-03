@@ -62,7 +62,7 @@ export default {
   font-size: $text;
   cursor: pointer;
   transition-property: background-color;
-  transition-duration: 1s;
+  transition-duration: 0.5s;
   transition-timing-function: ease-in-out;
 }
 

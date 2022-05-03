@@ -1,20 +1,22 @@
 <template lang="html">
-  <div class="container pt-4">
+  <div class="all container pt-4">
     <create-column :updateBoards="updateBoards" ref="createColumn" />
     <delete-board :updateBoards="updateBoards" ref="deleteBoard" />
-    <div
-      class="d-flex flex-row row row-cols-1 row-cols-sm-1 row-cols-md-3 row-col-lg-3 position-relative"
-    >
-      <column
-        :updateBoards="updateBoards"
+    <update-board :updateBoards="updateBoards" ref="updateBoard" />
+    <div class="boards d-flex position-relative">
+      <div
+        class="col-4 p-2"
         v-for="(column, index) in boards.find((board: Board) => board.active).columns"
         :key="index"
-        class="col"
-        :column="column"
-        :id="index"
-        :boards="boards"
-        :activeBoardId="activeBoardId"
-      />
+      >
+        <column
+          :updateBoards="updateBoards"
+          :column="column"
+          :id="index"
+          :boards="boards"
+          :activeBoardId="activeBoardId"
+        />
+      </div>
     </div>
     <div
       v-if="boards.findIndex((board: Board) => board.active)"
@@ -27,6 +29,12 @@
         <i class="fa-solid fa-plus"></i>
       </div>
       <div
+        @click="openUpdateModal"
+        class="board-action d-flex justify-content-center align-items-center p-2"
+      >
+        <i class="fa-solid fa-pencil"></i>
+      </div>
+      <div
         @click="openDeleteModal"
         class="board-action d-flex justify-content-center align-items-center p-2"
       >
@@ -36,9 +44,10 @@
   </div>
 </template>
 <script lang="ts">
-import Column from "../components/Column.vue";
-import CreateColumn from "../components/CreateColumn.vue";
-import DeleteBoard from "../components/DeleteBoard.vue";
+import Column from "../column/Column.vue";
+import CreateColumn from "../column/CreateColumn.vue";
+import DeleteBoard from "./DeleteBoard.vue";
+import UpdateBoard from "../board/UpdateBoard.vue";
 import { Board } from "@/types";
 import { PropType } from "@vue/runtime-core";
 export default {
@@ -60,6 +69,7 @@ export default {
     Column,
     CreateColumn,
     DeleteBoard,
+    UpdateBoard,
   },
   methods: {
     openCreateModal(): void {
@@ -68,13 +78,16 @@ export default {
     openDeleteModal(): void {
       this.$refs.deleteBoard.$refs.modal.show = true;
     },
+    openUpdateModal(): void {
+      this.$refs.updateBoard.$refs.modal.show = true;
+    },
   },
 };
 </script>
 
 <style scoped lang="scss">
-@import "../assets/styles/sizes";
-@import "../assets/styles/colors";
+@import "../../assets/styles/sizes";
+@import "../../assets/styles/colors";
 .board-action {
   background: $liberty;
   color: #fff;
@@ -82,12 +95,55 @@ export default {
   height: 7vh;
   width: 7vh;
   cursor: pointer;
+  transition-property: background;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
 }
 .board-action:hover {
   background: $deep-koamaru;
 }
 
-.create-board {
+.create-board,
+.board-action {
   margin-right: 1vh;
+}
+
+.board-action:hover i {
+  animation: icons-rotate 0.5s;
+}
+
+.create-board,
+.board-action {
+  z-index: 999;
+}
+.boards {
+  overflow: auto;
+  height: 75vh;
+}
+
+.boards::-webkit-scrollbar {
+  width: 3vh;
+  height: 3vh;
+}
+
+.boards::-webkit-scrollbar-track {
+  background-color: $gainsboro;
+  border-radius: 100px;
+}
+
+.boards::-webkit-scrollbar-thumb {
+  background-color: $locust;
+  border-radius: 100px;
+}
+@keyframes icons-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(20deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 </style>

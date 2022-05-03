@@ -33,7 +33,7 @@
 </template>
 <script lang="ts">
 import { Card, Board, WeekColors } from "@/types";
-import Modal from "./common/Modal.vue";
+import Modal from "../common/Modal.vue";
 import { ru } from "date-fns/locale";
 import { format } from "date-fns";
 

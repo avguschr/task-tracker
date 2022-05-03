@@ -1,5 +1,5 @@
 <template lang="html">
-  <Modal ref="modal" title="Новая карточка">
+  <Modal ref="modal" title="Редактирование карточки">
     <form>
       <label class="mb-2" for="title">Заголовок</label>
       <input
@@ -43,13 +43,13 @@
 </template>
 <script lang="ts">
 import { Card, Board } from "@/types";
-import Modal from "./common/Modal.vue";
+import Modal from "../common/Modal.vue";
 import { PropType } from "@vue/runtime-core";
 import { ru } from "date-fns/locale";
 import { format } from "date-fns";
 
 export default {
-  name: "create-card",
+  name: "update-card",
   components: {
     Modal,
   },

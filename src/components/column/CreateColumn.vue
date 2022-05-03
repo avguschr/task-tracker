@@ -16,7 +16,7 @@
 </template>
 <script lang="ts">
 import { Board, Column } from "@/types";
-import Modal from "./common/Modal.vue";
+import Modal from "../common/Modal.vue";
 
 export default {
   name: "create-column",
@@ -38,11 +38,11 @@ export default {
         cards: [],
       };
       if (this.title) {
+        this.$refs.modal.show = false;
         let boards = JSON.parse(localStorage.getItem("boards") as string);
         const activeBoardId = boards.findIndex((board: Board) => board.active);
         boards[activeBoardId].columns.push(newColumn);
         localStorage.boards = JSON.stringify(boards);
-        this.$refs.modal.show = false;
         this.title = "";
       }
       this.updateBoards();
