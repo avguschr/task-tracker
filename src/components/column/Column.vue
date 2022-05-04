@@ -2,11 +2,12 @@
   <div class="mb-2 main-column-block">
     <delete-column :updateBoards="updateBoards" :id="id" ref="deleteColumn" />
     <create-card :updateBoards="updateBoards" ref="createCard" :id="id" />
+    <update-column :updateBoards="updateBoards" ref="updateColumn" :id="id" />
     <div class="column">
       <div class="column-title d-flex justify-content-between p-2">
         {{ column.title }}
         <div v-if="activeBoardId">
-          <i class="fa-solid fa-pencil"></i>
+          <i @click="openModalUpdateColumn" class="fa-solid fa-pencil"></i>
           <i @click="openModalDeleteColumn" class="fa-solid fa-trash-can"></i>
         </div>
       </div>
@@ -15,8 +16,8 @@
       >
         <div class="cards">
           <draggable
-            style="min-height: 10vh"
-            @start="dragStart = true"
+            style="padding-bottom: 7vh"
+            @end="end"
             :list="column.cards"
             group="columns"
           >
@@ -43,6 +44,7 @@ import Card from "../card/Card.vue";
 import { Board, Column } from "@/types";
 import CreateCard from "../card/CreateCard.vue";
 import DeleteColumn from "../column/DeleteColumn.vue";
+import UpdateColumn from "../column/UpdateColumn.vue";
 import { VueDraggableNext } from "vue-draggable-next";
 export default {
   name: "board-component",
@@ -50,10 +52,16 @@ export default {
     Card,
     CreateCard,
     DeleteColumn,
+    UpdateColumn,
     draggable: VueDraggableNext,
   },
   props: {
-    updateBoards: Function,
+    updateBoards: {
+      type: Function,
+      default: (): void => {
+        return;
+      },
+    },
     column: {
       type: Object as PropType<Column>,
       default: () => ({
@@ -77,18 +85,19 @@ export default {
     };
   },
   methods: {
-    // add(card: Card, columnId: number): void {
-    //   const activeBoardId = this.boards.findIndex(
-    //     (board: Board) => board.active
-    //   );
-    //   this.boards[activeBoardId].columns[columnId].cards.push(card);
-    //   localStorage.boards = JSON.stringify(this.boards);
-    // },
+    end(): void {
+      console.log(this.boards[this.activeBoardId].columns[this.id]);
+      // this.boards[this.activeBoardId].columns[this.id] = this.column;
+      localStorage.boards = JSON.stringify(this.boards);
+    },
     openModalCreateCard(): void {
       this.$refs.createCard.$refs.modal.show = true;
     },
     openModalDeleteColumn(): void {
       this.$refs.deleteColumn.$refs.modal.show = true;
+    },
+    openModalUpdateColumn(): void {
+      this.$refs.updateColumn.$refs.modal.show = true;
     },
   },
 };

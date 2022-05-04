@@ -10,7 +10,7 @@
         type="text"
         @keypress.enter="createNewBoard"
       />
-      <e-input></e-input>
+      <e-button>Создать</e-button>
       <button @click.prevent="createNewBoard" class="button">Создать</button>
     </form>
   </Modal>
@@ -25,7 +25,12 @@ export default {
     Modal,
   },
   props: {
-    updateBoards: Function,
+    updateBoards: {
+      type: Function,
+      default: (): void => {
+        return;
+      },
+    },
   },
   data(): { title: string } {
     return {

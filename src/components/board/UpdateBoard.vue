@@ -24,7 +24,12 @@ export default {
     Modal,
   },
   props: {
-    updateBoards: Function,
+    updateBoards: {
+      type: Function,
+      default: (): void => {
+        return;
+      },
+    },
   },
   data(): { title: string } {
     return {

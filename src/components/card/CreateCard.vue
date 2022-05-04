@@ -43,7 +43,12 @@ export default {
     Modal,
   },
   props: {
-    updateBoards: Function,
+    updateBoards: {
+      type: Function,
+      default: (): void => {
+        return;
+      },
+    },
     id: {
       type: Number,
       default: () => 0,

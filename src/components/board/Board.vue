@@ -5,7 +5,7 @@
     <update-board :updateBoards="updateBoards" ref="updateBoard" />
     <div class="boards d-flex position-relative">
       <div
-        class="col-4 p-2"
+        class="col-md-4 p-2"
         v-for="(column, index) in boards.find((board: Board) => board.active).columns"
         :key="index"
       >
@@ -55,15 +55,18 @@ export default {
   props: {
     boards: {
       type: Array as PropType<Board[]>,
-      default: (): Board[] => {
-        return [];
-      },
+      default: (): Board[] => [],
     },
     activeBoardId: {
       type: Number,
       default: () => 0,
     },
-    updateBoards: Function,
+    updateBoards: {
+      type: Function,
+      default: (): void => {
+        return;
+      },
+    },
   },
   components: {
     Column,

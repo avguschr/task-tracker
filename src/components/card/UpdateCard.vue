@@ -54,7 +54,12 @@ export default {
     Modal,
   },
   props: {
-    updateBoards: Function,
+    updateBoards: {
+      type: Function,
+      default: (): void => {
+        return;
+      },
+    },
     cardId: {
       type: Number,
       default: () => 0,
@@ -65,6 +70,7 @@ export default {
     },
     card: {
       type: Object as PropType<Card>,
+      default: () => ({}),
     },
   },
   data(): { title: string; desc: string; deadline: string } {
@@ -85,6 +91,7 @@ export default {
             })
           : this.deadline,
         date: this.card.date,
+        color: this.card.color,
       };
       let boards = JSON.parse(localStorage.getItem("boards") as string);
       const activeBoardId = boards.findIndex((board: Board) => board.active);

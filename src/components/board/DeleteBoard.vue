@@ -20,7 +20,12 @@ export default {
     Modal,
   },
   props: {
-    updateBoards: Function,
+    updateBoards: {
+      type: Function,
+      default: (): void => {
+        return;
+      },
+    },
   },
   methods: {
     cancel(): void {

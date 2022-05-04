@@ -54,7 +54,12 @@ export default {
       type: Number,
       default: () => 0,
     },
-    updateBoards: Function,
+    updateBoards: {
+      type: Function,
+      default: (): void => {
+        return;
+      },
+    },
     card: {
       type: Object as PropType<Card>,
       default: () => {
