@@ -15,6 +15,7 @@
       >
         <div class="cards">
           <draggable
+            style="min-height: 10vh"
             @start="dragStart = true"
             :list="column.cards"
             group="columns"
