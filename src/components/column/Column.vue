@@ -16,14 +16,13 @@
       >
         <div class="cards">
           <draggable
-            v-model="cards"
             style="padding-bottom: 7vh"
             @end="end"
-            :list="cards"
+            :list="columns[id].cards"
             group="columns"
           >
             <card-component
-              v-for="(card, index) in cards"
+              v-for="(card, index) in columns[id].cards"
               :key="index"
               :updateBoards="updateBoards"
               :card="card"
@@ -78,6 +77,7 @@ export default {
       type: Number,
       default: () => 0,
     },
+    columns: Array,
   },
   data(): { boards: Board[]; dragStart: boolean; cards: Card[] } {
     return {
@@ -87,11 +87,9 @@ export default {
     };
   },
   methods: {
-    end(e: any): void {
-      console.log(this.boards[this.activeBoardId].columns);
-      // this.boards[this.activeBoardId].columns[this.id] = this.column;
+    end(): void {
+      this.boards[this.activeBoardId].columns = this.columns;
       localStorage.boards = JSON.stringify(this.boards);
-      console.log(e);
     },
     openModalCreateCard(): void {
       this.$refs.createCard.$refs.modal.show = true;

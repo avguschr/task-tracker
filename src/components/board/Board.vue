@@ -15,6 +15,7 @@
           :id="index"
           :boards="boards"
           :activeBoardId="activeBoardId"
+          :columns="boards.find((board: Board) => board.active).columns"
         />
       </div>
     </div>
