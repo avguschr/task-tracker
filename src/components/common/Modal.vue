@@ -54,12 +54,12 @@ export default {
 .title i {
   font-size: $title-1;
   cursor: pointer;
-  color: $liberty;
+  color: $main;
 }
 
 .title i:hover,
 .title h3 {
-  color: $deep-koamaru;
+  color: $secondary;
 }
 .title h3 {
   margin-right: 10vh !important;

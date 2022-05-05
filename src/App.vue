@@ -82,7 +82,8 @@ export default {
 @import "./src/assets/styles/sizes";
 @import "./src/assets/styles/colors";
 #app {
-  background: $black-haze;
+  height: 100vh;
+  background: $background;
   background-size: cover;
   font-family: "Nunito", sans-serif;
   scrollbar-width: thin;
@@ -103,8 +104,8 @@ export default {
     border-radius: 10px;
     padding: 8px 16px;
     color: black;
-    border: solid $gallery 1.5px;
-    background-color: $gallery;
+    border: solid $light 1.5px;
+    background-color: $light;
     margin-bottom: 1rem;
     outline: none;
   }
@@ -113,13 +114,13 @@ export default {
   textarea:active,
   textarea:focus {
     background-color: #fff;
-    border: solid $deep-koamaru 1.5px;
+    border: solid $secondary 1.5px;
   }
   .button {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background: $liberty;
+    background: $main;
     border: none;
     border-radius: 10px;
     padding: 8px 16px;
@@ -131,7 +132,7 @@ export default {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background: $pastel-red;
+    background: $danger;
     border: none;
     border-radius: 10px;
     padding: 8px 16px;

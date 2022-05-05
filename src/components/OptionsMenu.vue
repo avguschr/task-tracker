@@ -78,7 +78,7 @@ export default {
 
 .menu .menu-title i {
   cursor: pointer;
-  color: $liberty;
+  color: $main;
 }
 
 .menu .menu-title {
@@ -87,7 +87,7 @@ export default {
 
 .menu .menu-title,
 .menu .menu-title i:hover {
-  color: $deep-koamaru;
+  color: $secondary;
 }
 
 .back {

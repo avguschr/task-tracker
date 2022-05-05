@@ -101,7 +101,7 @@ export default {
 
 .menu .menu-title i {
   cursor: pointer;
-  color: $liberty;
+  color: $main;
 }
 
 .menu .menu-title {
@@ -110,7 +110,7 @@ export default {
 
 .menu .menu-title,
 .menu .menu-title i:hover {
-  color: $deep-koamaru;
+  color: $secondary;
 }
 
 .menu .create-board i {
@@ -127,16 +127,16 @@ export default {
 
 .create-board {
   cursor: pointer;
-  color: $liberty;
+  color: $main;
 }
 
 .create-board:hover i,
 .create-board:hover p {
-  color: $deep-koamaru;
+  color: $secondary;
 }
 
 .active {
-  background: $liberty;
+  background: $main;
   color: #fff;
 }
 

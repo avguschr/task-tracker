@@ -92,7 +92,7 @@ export default {
 @import "../../assets/styles/sizes";
 @import "../../assets/styles/colors";
 .board-action {
-  background: $liberty;
+  background: $main;
   color: #fff;
   border-radius: 100px;
   height: 7vh;
@@ -103,7 +103,7 @@ export default {
   transition-timing-function: ease-in-out;
 }
 .board-action:hover {
-  background: $deep-koamaru;
+  background: $secondary;
 }
 
 .create-board,
@@ -130,12 +130,12 @@ export default {
 }
 
 .boards::-webkit-scrollbar-track {
-  background-color: $gainsboro;
+  background-color: $secondary-light;
   border-radius: 100px;
 }
 
 .boards::-webkit-scrollbar-thumb {
-  background-color: $locust;
+  background-color: $additional;
   border-radius: 100px;
 }
 @keyframes icons-rotate {

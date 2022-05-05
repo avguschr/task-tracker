@@ -106,7 +106,7 @@ export default {
 @import "../../assets/styles/sizes";
 @import "../../assets/styles/colors";
 .column {
-  background: $gallery;
+  background: $light;
 }
 
 .column,
@@ -118,20 +118,20 @@ export default {
   color: #fff;
   text-align: center;
   font-size: $title-2;
-  background-color: $liberty;
+  background-color: $main;
   border-radius: 10px 10px 0 0;
 }
 
 .column .column-content button {
   background: none;
-  color: $locust;
+  color: $additional;
   border: none;
   outline: inherit;
   transition: color ease-in-out 1s;
 }
 
 .column .column-content button:hover {
-  color: $deep-koamaru;
+  color: $secondary;
 }
 
 .column .column-content .cards {
@@ -148,7 +148,7 @@ export default {
   margin-right: 2vh;
 }
 .column .column-title i:hover {
-  color: $deep-koamaru;
+  color: $secondary;
   animation: icons-rotate 0.5s;
 }
 @keyframes icons-rotate {

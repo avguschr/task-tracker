@@ -98,7 +98,7 @@ export default {
 }
 
 .board-card .date {
-  background-color: $liberty;
+  background-color: $main;
 }
 
 .board-card .date,
@@ -109,7 +109,7 @@ export default {
 }
 
 .board-card .deadline {
-  background-color: $pastel-red;
+  background-color: $danger;
 }
 
 .board-card .deadline i {
@@ -121,7 +121,7 @@ export default {
 }
 .board-card .options i {
   font-size: $title-2;
-  color: $liberty;
+  color: $main;
   cursor: pointer;
 }
 

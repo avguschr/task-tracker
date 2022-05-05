@@ -48,7 +48,7 @@ export default {
 .nav {
   padding: 1vh;
   width: 100%;
-  background: $liberty;
+  background: $main;
   color: #fff;
 }
 
@@ -72,6 +72,6 @@ export default {
 }
 
 .nav .nav-item:hover {
-  background-color: $deep-koamaru-translucent;
+  background-color: $secondary-translucent;
 }
 </style>
