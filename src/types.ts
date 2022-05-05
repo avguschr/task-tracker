@@ -26,3 +26,10 @@ export type WeekColors = {
   sat: string;
   sun: string;
 };
+
+export type Background = {
+  title: string;
+  active: boolean;
+  image?: string;
+  color?: string;
+};

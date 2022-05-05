@@ -1,4 +1,4 @@
-import { Board } from "./types";
+import { Board, Background } from "./types";
 
 export const mainBoard: Board = {
   title: "Основные доски",
@@ -18,3 +18,20 @@ export const mainBoard: Board = {
     },
   ],
 };
+export const backgrounds: Background[] = [
+  {
+    title: "Светлый",
+    active: true,
+    color: "#f7f7f7",
+  },
+  {
+    title: "Темный",
+    active: false,
+    color: "#272d6b",
+  },
+  {
+    title: "Узор",
+    active: false,
+    image: "./assets/backgrounds/b1.svg",
+  },
+];

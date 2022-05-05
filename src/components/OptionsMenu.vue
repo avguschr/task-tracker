@@ -13,9 +13,13 @@
           <div
             class="d-flex flex-row row row-cols-1 row-cols-sm-1 row-cols-md-3 row-col-lg-3"
           >
-            <div class="background-item col"></div>
-            <div class="background-item col"></div>
-            <div class="background-item col"></div>
+            <div
+              v-for="(background, index) in backgrounds"
+              :key="index"
+              class="background-item col"
+            >
+              {{ background.title }}
+            </div>
           </div>
         </div>
       </div>
@@ -23,15 +27,18 @@
   </div>
 </template>
 <script lang="ts">
+import { Background } from "@/types";
 export default {
   name: "boards-menu",
   data(): {
     showMenu: boolean;
     animation: string;
+    backgrounds: Background;
   } {
     return {
       showMenu: false,
       animation: "forward",
+      backgrounds: JSON.parse(localStorage.getItem("backgrounds") as string),
     };
   },
   methods: {
@@ -117,7 +124,6 @@ export default {
 }
 
 .background-item {
-  background: rgb(0, 255, 13);
   background-clip: content-box;
   height: 10vh;
 }

@@ -16,13 +16,14 @@
       >
         <div class="cards">
           <draggable
+            v-model="cards"
             style="padding-bottom: 7vh"
             @end="end"
-            :list="column.cards"
+            :list="cards"
             group="columns"
           >
-            <Card
-              v-for="(card, index) in column.cards"
+            <card-component
+              v-for="(card, index) in cards"
               :key="index"
               :updateBoards="updateBoards"
               :card="card"
@@ -40,8 +41,8 @@
 </template>
 <script lang="ts">
 import { PropType } from "@vue/runtime-core";
-import Card from "../card/Card.vue";
-import { Board, Column } from "@/types";
+import CardComponent from "../card/Card.vue";
+import { Board, Column, Card } from "@/types";
 import CreateCard from "../card/CreateCard.vue";
 import DeleteColumn from "../column/DeleteColumn.vue";
 import UpdateColumn from "../column/UpdateColumn.vue";
@@ -49,7 +50,7 @@ import { VueDraggableNext } from "vue-draggable-next";
 export default {
   name: "board-component",
   components: {
-    Card,
+    CardComponent,
     CreateCard,
     DeleteColumn,
     UpdateColumn,
@@ -78,17 +79,19 @@ export default {
       default: () => 0,
     },
   },
-  data(): { boards: Board[]; dragStart: boolean } {
+  data(): { boards: Board[]; dragStart: boolean; cards: Card[] } {
     return {
       boards: JSON.parse(localStorage.getItem("boards") as string),
       dragStart: false,
+      cards: this.column.cards,
     };
   },
   methods: {
-    end(): void {
-      console.log(this.boards[this.activeBoardId].columns[this.id]);
+    end(e: any): void {
+      console.log(this.boards[this.activeBoardId].columns);
       // this.boards[this.activeBoardId].columns[this.id] = this.column;
       localStorage.boards = JSON.stringify(this.boards);
+      console.log(e);
     },
     openModalCreateCard(): void {
       this.$refs.createCard.$refs.modal.show = true;
