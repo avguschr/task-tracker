@@ -1,5 +1,12 @@
 <template>
-  <div>
+  <div
+    id="page"
+    :style="[
+      getActiveBackground.color
+        ? { background: getActiveBackground.color }
+        : patternBg,
+    ]"
+  >
     <boards-menu
       :switchBoards="switchBoards"
       :boards="boards"
@@ -29,6 +36,12 @@ import Nav from "../components/Nav.vue";
 import { Board, Background } from "../types";
 import { mainBoard, backgrounds } from "../mainBoard";
 
+type PatternBg = {
+  backgroundImage: string;
+  backgroundRepeat: string;
+  backgroundSize: string;
+};
+
 export default {
   name: "page-component",
   components: {
@@ -37,10 +50,15 @@ export default {
     OptionsMenu,
     Nav,
   },
-  data(): { boards: Board[]; backgrounds: Background } {
+  data(): { boards: Board[]; backgrounds: Background; patternBg: PatternBg } {
     return {
       boards: JSON.parse(localStorage.getItem("boards") as string),
       backgrounds: JSON.parse(localStorage.getItem("backgrounds") as string),
+      patternBg: {
+        backgroundImage: "url('../assets/backgrounds/b1.svg')",
+        backgroundRepeat: "repeat",
+        backgroundSize: "100px",
+      },
     };
   },
   methods: {
@@ -76,6 +94,7 @@ export default {
     },
   },
   created() {
+    console.log(this.getActiveBackground);
     if (!localStorage.getItem("boards")) {
       this.addBoards();
     }
@@ -98,7 +117,6 @@ export default {
 @import "./src/assets/styles/colors";
 #app {
   height: 100vh;
-  background: $background;
   background-size: cover;
   font-family: "Nunito", sans-serif;
   scrollbar-width: thin;
@@ -154,5 +172,8 @@ export default {
     color: #fff;
     transition: box-shadow linear 0.1s;
   }
+}
+#page {
+  height: 100vh;
 }
 </style>

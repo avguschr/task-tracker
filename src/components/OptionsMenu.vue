@@ -10,17 +10,18 @@
       <div class="container">
         <div>
           <h5 class="mb-1">Фон</h5>
-          <div
+          <ul
             class="d-flex flex-row row row-cols-1 row-cols-sm-1 row-cols-md-3 row-col-lg-3"
           >
-            <div
+            <li
+              @click="changeBackground(index)"
               v-for="(background, index) in backgrounds"
               :key="index"
               class="background-item col"
             >
               {{ background.title }}
-            </div>
-          </div>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -47,6 +48,14 @@ export default {
       setTimeout(() => {
         this.showMenu = false;
       }, 500);
+    },
+    changeBackground(id: number): void {
+      console.log(id);
+      this.backgrounds.find(
+        (background: Background) => background.active
+      ).active = false;
+      this.backgrounds[id].active = true;
+      localStorage.backgrounds = JSON.stringify(this.backgrounds);
     },
   },
 };
@@ -105,6 +114,15 @@ export default {
   animation: menu-animation 1s ease forwards;
 }
 
+.menu ul {
+  list-style: none;
+  padding: 0;
+}
+
+.menu ul li {
+  cursor: pointer;
+}
+
 @keyframes menu-animation {
   0% {
     left: -50%;
@@ -125,6 +143,5 @@ export default {
 
 .background-item {
   background-clip: content-box;
-  height: 10vh;
 }
 </style>
