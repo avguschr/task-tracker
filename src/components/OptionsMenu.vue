@@ -31,6 +31,14 @@
 import { Background } from "@/types";
 export default {
   name: "boards-menu",
+  props: {
+    updateBackgrounds: {
+      type: Function,
+      default: () => {
+        return;
+      },
+    },
+  },
   data(): {
     showMenu: boolean;
     animation: string;
@@ -56,6 +64,7 @@ export default {
       ).active = false;
       this.backgrounds[id].active = true;
       localStorage.backgrounds = JSON.stringify(this.backgrounds);
+      this.updateBackgrounds();
     },
   },
 };

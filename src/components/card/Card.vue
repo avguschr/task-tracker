@@ -33,6 +33,7 @@
       :columnId="columnId"
       :cardId="cardId"
       ref="updateCard"
+      @click="log(card)"
     />
   </div>
 </template>
@@ -70,6 +71,9 @@ export default {
   methods: {
     openModalUpdate(): void {
       this.$refs.updateCard.$refs.modal.show = true;
+    },
+    log(card: Card) {
+      console.log(card);
     },
   },
 };

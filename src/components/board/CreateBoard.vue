@@ -10,7 +10,6 @@
         type="text"
         @keypress.enter="createNewBoard"
       />
-      <e-button>Создать</e-button>
       <button @click.prevent="createNewBoard" class="button">Создать</button>
     </form>
   </Modal>

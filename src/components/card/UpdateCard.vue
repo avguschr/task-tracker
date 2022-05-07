@@ -109,6 +109,9 @@ export default {
       this.$refs.modal.show = false;
     },
   },
+  unmounted() {
+    console.log(this.title);
+  },
 };
 </script>
 <style scoped lang="scss">

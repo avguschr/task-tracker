@@ -1,11 +1,12 @@
 <template>
   <div
     id="page"
-    :style="[
+    :class="getActiveBackground.image ? 'pattern' : null"
+    :style="
       getActiveBackground.color
         ? { background: getActiveBackground.color }
-        : patternBg,
-    ]"
+        : null
+    "
   >
     <boards-menu
       :switchBoards="switchBoards"
@@ -13,7 +14,7 @@
       :updateBoards="updateBoards"
       ref="switchBoards"
     />
-    <options-menu ref="optionsMenu" />
+    <options-menu :updateBackgrounds="updateBackgrounds" ref="optionsMenu" />
     <Nav
       :openSwitchBoards="openSwitchBoards"
       :openOptionsMenu="openOptionsMenu"
@@ -55,7 +56,7 @@ export default {
       boards: JSON.parse(localStorage.getItem("boards") as string),
       backgrounds: JSON.parse(localStorage.getItem("backgrounds") as string),
       patternBg: {
-        backgroundImage: "url('../assets/backgrounds/b1.svg')",
+        backgroundImage: "url(../assets/backgrounds/pattern1.svg)",
         backgroundRepeat: "repeat",
         backgroundSize: "100px",
       },
@@ -92,9 +93,13 @@ export default {
       localStorage.boards = JSON.stringify(this.boards);
       this.updateBoards();
     },
+    updateBackgrounds(): void {
+      this.backgrounds = JSON.parse(
+        localStorage.getItem("backgrounds") as string
+      );
+    },
   },
   created() {
-    console.log(this.getActiveBackground);
     if (!localStorage.getItem("boards")) {
       this.addBoards();
     }
@@ -113,8 +118,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import "./src/assets/styles/sizes";
-@import "./src/assets/styles/colors";
+@import "../assets/styles/sizes";
+@import "../assets/styles/colors";
 #app {
   height: 100vh;
   background-size: cover;
@@ -175,5 +180,10 @@ export default {
 }
 #page {
   height: 100vh;
+}
+.pattern {
+  background-image: url(../assets/backgrounds/pattern1.svg);
+  background-repeat: repeat;
+  background-size: 15vh;
 }
 </style>

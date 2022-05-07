@@ -27,7 +27,7 @@ export const backgrounds: Background[] = [
   {
     title: "Темный",
     active: false,
-    color: "#272d6b",
+    color: "#bec9b0",
   },
   {
     title: "Узор",
