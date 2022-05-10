@@ -66,6 +66,7 @@ export default {
       type: Function,
       default: (): void => {
         return;
+        //
       },
     },
   },
