@@ -31,7 +31,7 @@
             />
           </draggable>
         </div>
-        <button @click="openModalCreateCard" class="text-start">
+        <button @click="openModalCreateCard" class="text-start add-btn">
           Добавить карточку...
         </button>
       </div>
@@ -123,7 +123,7 @@ export default {
   border-radius: 10px 10px 0 0;
 }
 
-.column .column-content button {
+.column .column-content .add-btn {
   background: none;
   color: $additional;
   border: none;
@@ -131,7 +131,7 @@ export default {
   transition: color ease-in-out 1s;
 }
 
-.column .column-content button:hover {
+.column .column-content > .add-btn:hover {
   color: $secondary;
 }
 

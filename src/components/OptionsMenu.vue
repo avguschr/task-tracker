@@ -9,15 +9,14 @@
       </div>
       <div class="container">
         <div>
-          <h5 class="mb-1">Фон</h5>
-          <ul
-            class="d-flex flex-row row row-cols-1 row-cols-sm-1 row-cols-md-3 row-col-lg-3"
-          >
+          <h5 class="mb-2 text-center">Фон</h5>
+          <ul class="d-flex">
             <li
               @click="changeBackground(index)"
               v-for="(background, index) in backgrounds"
               :key="index"
-              class="background-item col"
+              class="background-item col text-center"
+              :class="[background.active ? 'menu-item-active' : null]"
             >
               {{ background.title }}
             </li>
@@ -45,7 +44,7 @@ export default {
     backgrounds: Background;
   } {
     return {
-      showMenu: false,
+      showMenu: true,
       animation: "forward",
       backgrounds: JSON.parse(localStorage.getItem("backgrounds") as string),
     };
@@ -130,6 +129,12 @@ export default {
 
 .menu ul li {
   cursor: pointer;
+  border-radius: 100px;
+  padding: 0;
+}
+
+.menu ul li:hover {
+  background: $main-translucent;
 }
 
 @keyframes menu-animation {
@@ -152,5 +157,10 @@ export default {
 
 .background-item {
   background-clip: content-box;
+}
+
+.menu-item-active {
+  background: $main;
+  color: #fff;
 }
 </style>

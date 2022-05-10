@@ -186,4 +186,29 @@ export default {
   background-repeat: repeat;
   background-size: 15vh;
 }
+.button::before {
+  pointer-events: none;
+}
+.button:hover {
+  background: red;
+  color: red;
+  position: relative;
+}
+@keyframes button-shadow-animation {
+  0% {
+    box-shadow: none;
+  }
+  25% {
+    box-shadow: -100px 0px 100px 100px rgba(34, 60, 80, 0.2) inset;
+  }
+  50% {
+    box-shadow: 0px 0px 100px 100px rgba(34, 60, 80, 0.2) inset;
+  }
+  75% {
+    box-shadow: 100px 0px 100px 100px rgba(34, 60, 80, 0.2) inset;
+  }
+  100% {
+    box-shadow: none;
+  }
+}
 </style>
