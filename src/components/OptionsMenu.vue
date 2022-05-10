@@ -16,7 +16,7 @@
               v-for="(background, index) in backgrounds"
               :key="index"
               class="background-item col text-center"
-              :class="[background.active ? 'menu-item-active' : null]"
+              :class="[background.active ? 'menu-item-active' : 'inactive']"
             >
               {{ background.title }}
             </li>
@@ -133,7 +133,7 @@ export default {
   padding: 0;
 }
 
-.menu ul li:hover {
+.inactive:hover {
   background: $main-translucent;
 }
 

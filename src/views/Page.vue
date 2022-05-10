@@ -163,7 +163,6 @@ export default {
     border-radius: 10px;
     padding: 8px 16px;
     color: #fff;
-    transition: box-shadow linear 0.1s;
   }
 
   .button-warning {
@@ -175,40 +174,21 @@ export default {
     border-radius: 10px;
     padding: 8px 16px;
     color: #fff;
-    transition: box-shadow linear 0.1s;
   }
-}
-#page {
-  height: 100vh;
-}
-.pattern {
-  background-image: url(../assets/backgrounds/pattern1.svg);
-  background-repeat: repeat;
-  background-size: 15vh;
-}
-.button::before {
-  pointer-events: none;
-}
-.button:hover {
-  background: red;
-  color: red;
-  position: relative;
-}
-@keyframes button-shadow-animation {
-  0% {
-    box-shadow: none;
+
+  .button::before {
+    pointer-events: none;
   }
-  25% {
-    box-shadow: -100px 0px 100px 100px rgba(34, 60, 80, 0.2) inset;
+  .button:hover {
+    position: relative;
   }
-  50% {
-    box-shadow: 0px 0px 100px 100px rgba(34, 60, 80, 0.2) inset;
+  #page {
+    height: 100vh;
   }
-  75% {
-    box-shadow: 100px 0px 100px 100px rgba(34, 60, 80, 0.2) inset;
-  }
-  100% {
-    box-shadow: none;
+  .pattern {
+    background-image: url(../assets/backgrounds/pattern1.svg);
+    background-repeat: repeat;
+    background-size: 15vh;
   }
 }
 </style>
