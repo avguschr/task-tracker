@@ -77,9 +77,16 @@ export default {
       type: Number,
       default: () => 0,
     },
-    columns: Array,
+    columns: {
+      type: Array as PropType<Column[]>,
+      default: () => [],
+    },
   },
-  data(): { boards: Board[]; dragStart: boolean; cards: Card[] } {
+  data(): {
+    boards: Board[];
+    dragStart: boolean;
+    cards: Card[];
+  } {
     return {
       boards: JSON.parse(localStorage.getItem("boards") as string),
       dragStart: false,

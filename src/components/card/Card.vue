@@ -72,9 +72,6 @@ export default {
     openModalUpdate(): void {
       this.$refs.updateCard.$refs.modal.show = true;
     },
-    log(card: Card) {
-      console.log(card);
-    },
   },
 };
 </script>
@@ -114,6 +111,7 @@ export default {
 
 .board-card .deadline {
   background-color: $danger;
+  margin-right: 2vh !important;
 }
 
 .board-card .deadline i {
