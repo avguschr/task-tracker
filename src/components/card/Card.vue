@@ -72,9 +72,6 @@ export default {
     openModalUpdate(): void {
       this.$refs.updateCard.$refs.modal.show = true;
     },
-    log(card: Card) {
-      console.log(card);
-    },
   },
 };
 </script>

@@ -36,6 +36,7 @@ import OptionsMenu from "../components/OptionsMenu.vue";
 import Nav from "../components/Nav.vue";
 import { Board, Background } from "../types";
 import { mainBoard, backgrounds } from "../mainBoard";
+import { getBoards } from "../back/requests";
 
 type PatternBg = {
   backgroundImage: string;
@@ -106,6 +107,7 @@ export default {
     if (!localStorage.getItem("backgrounds")) {
       this.addBackgrounds();
     }
+    console.log(getBoards());
   },
   computed: {
     getActiveBackground(): Background {

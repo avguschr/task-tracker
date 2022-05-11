@@ -12,6 +12,7 @@
     "@egalteam/widget-library": "^1.0.0-beta.26",
     "core-js": "^3.8.3",
     "date-fns": "^2.28.0",
+    "firebase": "^9.7.0",
     "vue": "^3.2.13",
     "vue-class-component": "^8.0.0-0",
     "vue-dndrop": "^1.2.2",

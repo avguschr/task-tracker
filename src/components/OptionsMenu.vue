@@ -57,7 +57,6 @@ export default {
       }, 500);
     },
     changeBackground(id: number): void {
-      console.log(id);
       this.backgrounds.find(
         (background: Background) => background.active
       ).active = false;
