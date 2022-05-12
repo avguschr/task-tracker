@@ -163,6 +163,7 @@ export default {
     border-radius: 10px;
     padding: 8px 16px;
     color: #fff;
+    transition: background ease 1s;
   }
 
   .button-warning {
@@ -174,6 +175,7 @@ export default {
     border-radius: 10px;
     padding: 8px 16px;
     color: #fff;
+    transition: background ease 1s;
   }
 
   .button::before {
@@ -181,6 +183,20 @@ export default {
   }
   .button:hover {
     position: relative;
+    background: linear-gradient(
+      90deg,
+      rgba(66, 87, 166, 1) 0%,
+      rgba(112, 134, 216, 1) 41%,
+      rgba(147, 167, 245, 1) 100%
+    );
+  }
+  .button-warning:hover {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 102, 102, 1) 0%,
+      rgba(255, 131, 131, 1) 41%,
+      rgba(255, 193, 193, 1) 100%
+    );
   }
   #page {
     height: 100vh;

@@ -57,7 +57,6 @@ export default {
       }, 500);
     },
     changeBackground(id: number): void {
-      console.log(id);
       this.backgrounds.find(
         (background: Background) => background.active
       ).active = false;
@@ -131,6 +130,7 @@ export default {
   cursor: pointer;
   border-radius: 100px;
   padding: 0;
+  transition: background ease 1s;
 }
 
 .inactive:hover {
