@@ -8,7 +8,7 @@
         required
         id="title"
         type="text"
-        @keypress.enter="createNewBoard"
+        @keypress.enter.prevent="createNewBoard"
       />
       <button @click.prevent="createNewBoard" class="button">Создать</button>
     </form>
@@ -50,6 +50,7 @@ export default {
       boards.push(newBoard);
       localStorage.boards = JSON.stringify(boards);
       this.$refs.modal.show = false;
+      this.title = "";
       this.updateBoards();
     },
   },

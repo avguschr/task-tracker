@@ -18,6 +18,7 @@ export default {
   name: "modal-component",
   props: {
     title: String,
+    card: Object,
   },
   data(): { show: boolean } {
     return {
@@ -27,6 +28,7 @@ export default {
   methods: {
     close(): void {
       this.show = false;
+      console.log(this.card);
     },
   },
 };

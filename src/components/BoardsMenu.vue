@@ -12,17 +12,19 @@
           <i class="fa-solid fa-plus mr-3 d-inline"></i>
           <p class="d-inline">Создать доску</p>
         </div>
-        <ul>
-          <li
-            @click="switchBoards(index)"
-            class="mb-2 container pb-1 pt-1"
-            v-for="(board, index) in boards"
-            :key="index"
-            :class="[board.active ? 'active' : null]"
-          >
-            {{ board.title }}
-          </li>
-        </ul>
+        <div class="boards-items">
+          <ul>
+            <li
+              @click="switchBoards(index)"
+              class="mb-2 container pb-1 pt-1"
+              v-for="(board, index) in boards"
+              :key="index"
+              :class="[board.active ? 'active' : null]"
+            >
+              {{ board.title }}
+            </li>
+          </ul>
+        </div>
       </div>
       <create-board :updateBoards="updateBoards" ref="createBoard" />
     </div>
@@ -85,8 +87,6 @@ export default {
   background: rgba(0, 0, 0, 0.24);
   left: 0;
   top: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
 }
 .menu {
   width: 30%;
@@ -143,6 +143,8 @@ export default {
 .menu ul {
   padding: 0;
   list-style: none;
+  height: 80vh;
+  overflow-y: auto;
 }
 
 .menu ul li {

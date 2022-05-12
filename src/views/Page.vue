@@ -190,5 +190,30 @@ export default {
     background-repeat: repeat;
     background-size: 15vh;
   }
+  ::-webkit-scrollbar {
+    width: 2vh;
+    height: 2vh;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: $secondary-light;
+    border-radius: 100px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: $additional;
+    border-radius: 100px;
+  }
+  @keyframes icons-rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(20deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
 }
 </style>

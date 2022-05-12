@@ -1,5 +1,5 @@
 <template lang="html">
-  <Modal ref="modal" title="Редактирование карточки">
+  <Modal :card="card" ref="modal" title="Редактирование карточки">
     <form>
       <label class="mb-2" for="title">Заголовок</label>
       <input

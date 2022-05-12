@@ -44,7 +44,7 @@ export default {
     backgrounds: Background;
   } {
     return {
-      showMenu: true,
+      showMenu: false,
       animation: "forward",
       backgrounds: JSON.parse(localStorage.getItem("backgrounds") as string),
     };

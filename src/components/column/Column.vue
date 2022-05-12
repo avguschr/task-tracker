@@ -23,7 +23,7 @@
           >
             <card-component
               v-for="(card, index) in columns[id].cards"
-              :key="index"
+              :key="card"
               :updateBoards="updateBoards"
               :card="card"
               :cardId="index"
