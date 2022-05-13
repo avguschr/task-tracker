@@ -9,7 +9,7 @@
     <update-board :updateBoards="updateBoards" ref="updateBoard" />
     <div class="boards d-flex position-relative">
       <div
-        class="col-md-4 p-2"
+        class="col-md-4 col-sm-6 p-2 col-12 col-lg-4"
         v-for="(column, index) in boards.find((board: Board) => board.active).columns"
         :key="index"
       >

@@ -10,7 +10,7 @@
       </div>
     </div>
     <div
-      class="content d-flex justify-content-between align-items-start flex-column p-3"
+      class="d-flex justify-content-between align-items-start flex-column p-3"
     >
       <div class="mb-3">
         <div>
@@ -79,6 +79,10 @@ export default {
 @import "../../assets/styles/sizes";
 @import "../../assets/styles/colors";
 
+.content {
+  word-wrap: break-word;
+  white-space: normal;
+}
 .board-card {
   background-color: #fff;
   border-radius: 10px;

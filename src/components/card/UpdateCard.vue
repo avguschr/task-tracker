@@ -9,6 +9,7 @@
         id="title"
         type="text"
         min="1"
+        max="20"
       />
       <label class="mb-2" for="desc">Описание</label>
       <textarea
