@@ -1,6 +1,6 @@
 <template lang="html">
   <Modal ref="modal" title="Новая доска">
-    <form>
+    <form @submit="createNewBoard">
       <label class="mb-2" for="title">Заголовок</label>
       <input
         autocomplete="off"
@@ -10,7 +10,7 @@
         type="text"
         @keypress.enter.prevent="createNewBoard"
       />
-      <button @click.prevent="createNewBoard" class="button">Создать</button>
+      <button class="button">Создать</button>
     </form>
   </Modal>
 </template>
@@ -24,6 +24,7 @@ export default {
     Modal,
   },
   props: {
+    closeMenu: Function,
     updateBoards: {
       type: Function,
       default: (): void => {
@@ -51,6 +52,7 @@ export default {
       localStorage.boards = JSON.stringify(boards);
       this.$refs.modal.show = false;
       this.title = "";
+      this.closeMenu();
       this.updateBoards();
     },
   },

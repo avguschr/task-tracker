@@ -1,7 +1,11 @@
 <template lang="html">
   <div class="all container pt-4">
     <create-column :updateBoards="updateBoards" ref="createColumn" />
-    <delete-board :updateBoards="updateBoards" ref="deleteBoard" />
+    <delete-board
+      :openSwitchBoards="openSwitchBoards"
+      :updateBoards="updateBoards"
+      ref="deleteBoard"
+    />
     <update-board :updateBoards="updateBoards" ref="updateBoard" />
     <div class="boards d-flex position-relative">
       <div
@@ -54,6 +58,7 @@ import { PropType } from "@vue/runtime-core";
 export default {
   name: "boards-component",
   props: {
+    openSwitchBoards: Function,
     boards: {
       type: Array as PropType<Board[]>,
       default: (): Board[] => [],

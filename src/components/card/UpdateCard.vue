@@ -1,6 +1,6 @@
 <template lang="html">
   <Modal :card="card" ref="modal" title="Редактирование карточки">
-    <form>
+    <form @submit="updateCard(columnId, cardId)">
       <label class="mb-2" for="title">Заголовок</label>
       <input
         autocomplete="off"
@@ -28,9 +28,7 @@
         type="datetime-local"
       />
       <div>
-        <button @click.prevent="updateCard(columnId, cardId)" class="button">
-          Изменить
-        </button>
+        <button class="button">Изменить</button>
         <button
           @click.prevent="deleteCard(columnId, cardId)"
           class="button-warning"

@@ -26,7 +26,11 @@
           </ul>
         </div>
       </div>
-      <create-board :updateBoards="updateBoards" ref="createBoard" />
+      <create-board
+        :closeMenu="closeMenu"
+        :updateBoards="updateBoards"
+        ref="createBoard"
+      />
     </div>
   </div>
 </template>
@@ -68,7 +72,7 @@ export default {
       this.animation = "back";
       setTimeout(() => {
         this.showMenu = false;
-      }, 500);
+      }, 300);
     },
     openModal(): void {
       this.$refs.createBoard.$refs.modal.show = true;
@@ -118,11 +122,11 @@ export default {
 }
 
 .back {
-  animation: menu-animation-back 1s ease;
+  animation: menu-animation-back 0.5s ease;
 }
 
 .forward {
-  animation: menu-animation 1s ease forwards;
+  animation: menu-animation 0.5s ease forwards;
 }
 
 .create-board {

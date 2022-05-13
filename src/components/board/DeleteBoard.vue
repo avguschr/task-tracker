@@ -20,6 +20,7 @@ export default {
     Modal,
   },
   props: {
+    openSwitchBoards: Function,
     updateBoards: {
       type: Function,
       default: (): void => {
@@ -40,6 +41,7 @@ export default {
       boards[0].active = true;
       localStorage.boards = JSON.stringify(boards);
       this.updateBoards();
+      this.openSwitchBoards();
     },
   },
 };

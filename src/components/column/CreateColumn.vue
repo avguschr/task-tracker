@@ -1,6 +1,6 @@
 <template lang="html">
   <Modal ref="modal" title="Новый столбец">
-    <form>
+    <form @submit="createNewColumn">
       <label class="mb-2" for="title">Заголовок</label>
       <input
         autocomplete="off"
@@ -10,7 +10,7 @@
         type="text"
         @keypress.enter="createNewColumn"
       />
-      <button @click.prevent="createNewColumn" class="button">Создать</button>
+      <button class="button">Создать</button>
     </form>
   </Modal>
 </template>

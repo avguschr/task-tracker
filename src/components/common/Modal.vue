@@ -28,7 +28,6 @@ export default {
   methods: {
     close(): void {
       this.show = false;
-      console.log(this.card);
     },
   },
 };

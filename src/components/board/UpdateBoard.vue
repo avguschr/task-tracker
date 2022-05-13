@@ -1,6 +1,6 @@
 <template lang="html">
   <Modal ref="modal" title="Редактирование доски">
-    <form>
+    <form @submit="updateBoard">
       <label class="mb-2" for="title">Заголовок</label>
       <input
         autocomplete="off"
@@ -10,7 +10,7 @@
         type="text"
         min="1"
       />
-      <button @click.prevent="updateBoard" class="button">Изменить</button>
+      <button class="button">Изменить</button>
     </form>
   </Modal>
 </template>

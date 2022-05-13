@@ -14,10 +14,12 @@
     "@vuelidate/validators": "^2.0.0-alpha.29",
     "core-js": "^3.8.3",
     "date-fns": "^2.28.0",
+    "vee-validate": "^4.5.11",
     "vue": "^3.2.13",
     "vue-class-component": "^8.0.0-0",
     "vue-dndrop": "^1.2.2",
-    "vue-draggable-next": "^2.1.1"
+    "vue-draggable-next": "^2.1.1",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.4.0",

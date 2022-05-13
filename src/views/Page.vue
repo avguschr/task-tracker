@@ -20,6 +20,7 @@
       :openOptionsMenu="openOptionsMenu"
     />
     <active-board
+      :openSwitchBoards="openSwitchBoards"
       :boards="boards"
       :activeBoardId="boards.findIndex(
         (board: Board) => board.active
@@ -51,7 +52,11 @@ export default {
     OptionsMenu,
     Nav,
   },
-  data(): { boards: Board[]; backgrounds: Background; patternBg: PatternBg } {
+  data(): {
+    boards: Board[];
+    backgrounds: Background;
+    patternBg: PatternBg;
+  } {
     return {
       boards: JSON.parse(localStorage.getItem("boards") as string),
       backgrounds: JSON.parse(localStorage.getItem("backgrounds") as string),
@@ -91,6 +96,7 @@ export default {
       this.boards.find((board: Board) => board.active === true).active = false;
       this.boards[id].active = true;
       localStorage.boards = JSON.stringify(this.boards);
+      this.$refs.switchBoards.closeMenu();
       this.updateBoards();
     },
     updateBackgrounds(): void {

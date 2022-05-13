@@ -54,7 +54,7 @@ export default {
       this.animation = "back";
       setTimeout(() => {
         this.showMenu = false;
-      }, 500);
+      }, 300);
     },
     changeBackground(id: number): void {
       this.backgrounds.find(
@@ -114,11 +114,11 @@ export default {
 }
 
 .back {
-  animation: menu-animation-back 1s ease;
+  animation: menu-animation-back 0.5s ease;
 }
 
 .forward {
-  animation: menu-animation 1s ease forwards;
+  animation: menu-animation 0.5s ease forwards;
 }
 
 .menu ul {

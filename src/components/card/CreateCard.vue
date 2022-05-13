@@ -1,6 +1,6 @@
 <template lang="html">
   <Modal ref="modal" title="Новая карточка">
-    <form>
+    <form @submit="createNewCard(id)">
       <label class="mb-2" for="title">Заголовок</label>
       <input
         autocomplete="off"
@@ -27,7 +27,7 @@
         id="deadline"
         type="datetime-local"
       />
-      <button @click.prevent="createNewCard(id)" class="button">Создать</button>
+      <button class="button">Создать</button>
     </form>
   </Modal>
 </template>
